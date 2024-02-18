@@ -79,6 +79,12 @@ set_target_properties(Telebot PROPERTIES
 
 target_link_libraries(Telebot PRIVATE ExtendedCpp::Json ExtendedCpp::Events ExtendedCpp::Common ${OPENSSL_LIBRARIES} ${Boost_LIBRARIES})
 
+if(MSVC)
+    target_compile_options(Telebot PRIVATE /bigobj)
+else()
+    target_compile_options(Telebot PRIVATE -Wa,-mbig-obj)
+endif()
+
 if(Telebot_INSTALL AND NOT CMAKE_SKIP_INSTALL_RULES)
     include(CMakePackageConfigHelpers)
     configure_package_config_file(cmake/telebot-config.cmake.in telebot-config.cmake
