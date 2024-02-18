@@ -7,6 +7,11 @@ project(Telebot
 
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake)
+
+include(GNUInstallDirs)
+include(CMakePackageConfigHelpers)
+include(cmake/utils.cmake)
 
 if(WIN32)
     set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)
@@ -14,35 +19,15 @@ endif()
 
 string(COMPARE EQUAL "${CMAKE_SOURCE_DIR}" "${CMAKE_CURRENT_SOURCE_DIR}" is_top_level)
 
-macro(set_if_undefined variable)
-    if(NOT DEFINED "${variable}")
-        set("${variable}" ${ARGN})
-    endif()
-endmacro()
-
-option(Telebot_SHARED_LIBS "Build libs as shared" OFF)
-
+option(BUILD_SHARED_LIBS "Build libs as shared" ON)
 option(Telebot_INSTALL "Generate target for installing ApiTelegramBot" ${is_top_level})
 set_if_undefined(Telebot_INSTALL_CMAKEDIR
-        "${CMAKE_INSTALL_LIBDIR}/cmake/telebot" CACHE STRING
+        "${CMAKE_INSTALL_LIBDIR}/telebot" CACHE STRING
         "Install path for ApiTelegramBot package-related CMake files")
-
-if(DEFINED Telebot_SHARED_LIBS)
-    set(BUILD_SHARED_LIBS ${Telebot_SHARED_LIBS})
-endif()
-
-if(NOT DEFINED CMAKE_BUILD_TYPE AND NOT DEFINED CMAKE_CONFIGURATION_TYPES)
-    set(CMAKE_BUILD_TYPE Release CACHE STRING "Build type" FORCE)
-    set_property(CACHE CMAKE_BUILD_TYPE PROPERTY STRINGS "Debug" "Release" "MinSizeRel" "RelWithDebInfo")
-endif()
-
-add_library(Telebot)
-add_library(Telebot::Telebot ALIAS Telebot)
 
 set(Telebot_INCLUDES
         include/Telebot/Telebot.h
-        include/Telebot/TelebotApi.h
-        include/Telebot/Types/..)
+        include/Telebot/TelebotApi.h)
 
 set(Telebot_SOURCE
         src/Telebot/Telebot.cpp
@@ -57,27 +42,22 @@ set(Telebot_SOURCE
         src/Telebot/Types/PassportElementError.cpp
         src/Telebot/Types/GenericReply.cpp)
 
-source_group(TREE "${CMAKE_CURRENT_SOURCE_DIR}" FILES
-        ${Telebot_INCLUDES}
-        ${Telebot_SOURCE})
+add_library(Telebot ${Telebot_INCLUDES} ${Telebot_SOURCE})
+add_library(Telebot::Telebot ALIAS Telebot)
 
-target_sources(Telebot PRIVATE ${Telebot_INCLUDES} ${Telebot_SOURCE})
+set_public_include_directories(Telebot)
+set_targets_version(Telebot)
 
 find_package(Boost REQUIRED)
 find_package(OpenSSL REQUIRED)
 find_package(ExtendedCpp REQUIRED)
 
-target_include_directories(Telebot PUBLIC
-        ${OPENSSL_INCLUDE_DIR} ${Boost_INCLUDE_DIRS}
-        "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>"
-        "$<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}/include>"
-        PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/src/Telebot")
-
-set_target_properties(Telebot PROPERTIES
-        SOVERSION ${PROJECT_VERSION_MAJOR}
-        VERSION ${PROJECT_VERSION})
-
-target_link_libraries(Telebot PRIVATE ExtendedCpp::Json ExtendedCpp::Events ExtendedCpp::Common ${OPENSSL_LIBRARIES} ${Boost_LIBRARIES})
+target_link_libraries(Telebot PRIVATE
+        ExtendedCpp::Json
+        ExtendedCpp::Events
+        ExtendedCpp::Common
+        ${OPENSSL_LIBRARIES}
+        ${Boost_LIBRARIES})
 
 if(MINGW)
     target_link_libraries(Telebot PRIVATE ws2_32)
@@ -90,15 +70,16 @@ else()
 endif()
 
 if(Telebot_INSTALL AND NOT CMAKE_SKIP_INSTALL_RULES)
-    include(CMakePackageConfigHelpers)
     configure_package_config_file(cmake/telebot-config.cmake.in telebot-config.cmake
             INSTALL_DESTINATION "${Telebot_INSTALL_CMAKEDIR}")
-    write_basic_package_version_file(telebot-config-version.cmake
+
+    write_basic_package_version_file(
+            "${CMAKE_CURRENT_BINARY_DIR}/telebot-config-version.cmake"
+            VERSION ${PROJECT_VERSION}
             COMPATIBILITY SameMajorVersion)
 
     install(DIRECTORY include/
-            TYPE INCLUDE
-            COMPONENT Telebot)
+            TYPE INCLUDE)
 
     set(targets_file "telebot-shared-targets.cmake")
     if(NOT BUILD_SHARED_LIBS)
@@ -106,17 +87,14 @@ if(Telebot_INSTALL AND NOT CMAKE_SKIP_INSTALL_RULES)
     endif()
 
     install(EXPORT Telebot_export
-            COMPONENT "${PROJECT_NAME}"
-            FILE "${targets_file}"
-            DESTINATION ${Telebot_INSTALL_CMAKEDIR}
-            NAMESPACE ${PROJECT_NAME}::)
+            NAMESPACE Telebot::
+            FILE "telebot-targets.cmake"
+            DESTINATION ${Telebot_INSTALL_CMAKEDIR})
 
     install(FILES
             "${CMAKE_CURRENT_BINARY_DIR}/telebot-config.cmake"
             "${CMAKE_CURRENT_BINARY_DIR}/telebot-config-version.cmake"
-            COMPONENT Telebot
-            DESTINATION "${Telebot_INSTALL_CMAKEDIR}")
+            DESTINATION ${Telebot_INSTALL_CMAKEDIR})
 
-    include(cmake/utils.cmake)
     install_projects(Telebot)
 endif()
