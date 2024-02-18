@@ -45,12 +45,12 @@ set(Telebot_SOURCE
 add_library(Telebot ${Telebot_INCLUDES} ${Telebot_SOURCE})
 add_library(Telebot::Telebot ALIAS Telebot)
 
+find_package(OpenSSL REQUIRED)
+find_package(Boost REQUIRED)
+find_package(ExtendedCpp REQUIRED)
+
 set_public_include_directories(Telebot)
 set_targets_version(Telebot)
-
-find_package(Boost REQUIRED)
-find_package(OpenSSL REQUIRED)
-find_package(ExtendedCpp REQUIRED)
 
 target_link_libraries(Telebot PRIVATE
         ExtendedCpp::Json
