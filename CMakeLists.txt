@@ -79,6 +79,10 @@ set_target_properties(Telebot PROPERTIES
 
 target_link_libraries(Telebot PRIVATE ExtendedCpp::Json ExtendedCpp::Events ExtendedCpp::Common ${OPENSSL_LIBRARIES} ${Boost_LIBRARIES})
 
+if(MINGW)
+    target_link_libraries(Telebot PRIVATE ws2_32)
+endif()
+
 if(MSVC)
     target_compile_options(Telebot PRIVATE /bigobj)
 else()
