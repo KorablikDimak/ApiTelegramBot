@@ -65,8 +65,8 @@ endif()
 
 if(MSVC)
     target_compile_options(Telebot PRIVATE /bigobj)
-else()
-    target_compile_options(Telebot PRIVATE -Wa,-mbig-obj)
+elseif(CMAKE_BUILD_TYPE MATCHES "Debug")
+    target_compile_options(Telebot PRIVATE -O1 -Wa,-mbig-obj)
 endif()
 
 if(Telebot_INSTALL AND NOT CMAKE_SKIP_INSTALL_RULES)
