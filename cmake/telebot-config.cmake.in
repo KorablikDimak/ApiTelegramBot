@@ -27,6 +27,5 @@ if(NOT TARGET Telebot::Telebot)
     endif()
 
     import_targets(${type})
-    check_required_components(Telebot)
     message("-- Found ${type} ApiTelegramBot (version ${${CMAKE_FIND_PACKAGE_NAME}_VERSION})")
 endif()
