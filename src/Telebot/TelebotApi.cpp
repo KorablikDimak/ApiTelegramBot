@@ -24,19 +24,20 @@ std::optional<Json::Json> Telebot::TelebotApi::Get(const std::string& methodName
     httpContext->Request->target("/bot" + _token + "/" + methodName);
 
     try
-    { HttpsClient::SendHttpsAsync(httpContext); }
+    {
+        HttpsClient::SendHttpsAsync(httpContext);
+        const auto json = Json::Json::parse(httpContext->Response->get().body());
+        if (!json.contains("ok")) return std::nullopt;
+        if (json.at("ok").get<bool>())
+        {
+            if (!json.contains("result"))
+                return std::nullopt;
+            return json.at("result");
+        }
+        return std::nullopt;
+    }
     catch (...)
     { return std::nullopt; }
-
-    const auto json = Json::Json::parse(httpContext->Response->get().body());
-    if (!json.contains("ok")) return std::nullopt;
-    if (json.at("ok").get<bool>())
-    {
-        if (!json.contains("result"))
-            return std::nullopt;
-        return json.at("result");
-    }
-    return std::nullopt;
 }
 
 std::optional<Json::Json> Telebot::TelebotApi::Post(const std::string& methodName, const Json::Json& params) const noexcept
@@ -52,19 +53,20 @@ std::optional<Json::Json> Telebot::TelebotApi::Post(const std::string& methodNam
     httpContext->Request->prepare_payload();
 
     try
-    { HttpsClient::SendHttpsAsync(httpContext); }
+    {
+        HttpsClient::SendHttpsAsync(httpContext);
+        const auto json = Json::Json::parse(httpContext->Response->get().body());
+        if (!json.contains("ok")) return std::nullopt;
+        if (json.at("ok").get<bool>())
+        {
+            if (!json.contains("result"))
+                return std::nullopt;
+            return json.at("result");
+        }
+        return std::nullopt;
+    }
     catch (...)
     { return std::nullopt; }
-
-    const auto json = Json::Json::parse(httpContext->Response->get().body());
-    if (!json.contains("ok")) return std::nullopt;
-    if (json.at("ok").get<bool>())
-    {
-        if (!json.contains("result"))
-            return std::nullopt;
-        return json.at("result");
-    }
-    return std::nullopt;
 }
 
 std::vector<Telebot::Update::Ptr> Telebot::TelebotApi::GetUpdates(int offset,
