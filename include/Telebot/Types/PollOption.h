@@ -14,7 +14,7 @@ namespace Telebot
         std::int64_t voter_count;
     };
 
-    inline void from_json(const Json::Json& json, PollOption& object)
+    inline void from_json(const Json::Json& json, PollOption& object) noexcept
     {
         VALUE_FROM_JSON(text)
         VALUE_FROM_JSON(voter_count)

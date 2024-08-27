@@ -12,12 +12,12 @@ namespace Telebot
 
         static const std::string TYPE;
 
-        InputMediaPhoto()
+        InputMediaPhoto() noexcept
         {
             Type = TYPE;
         }
 
-        bool HasSpoiler;
+        bool HasSpoiler{};
     };
 }
 

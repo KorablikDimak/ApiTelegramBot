@@ -21,7 +21,7 @@ namespace Telebot
         std::unique_ptr<HttpRequest> Request;
         std::unique_ptr<HttpResponse> Response;
 
-        HttpContext()
+        HttpContext() noexcept
         {
             Request = std::make_unique<HttpRequest>();
             Response = std::make_unique<HttpResponse>();

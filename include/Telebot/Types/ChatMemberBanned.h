@@ -12,12 +12,12 @@ namespace Telebot
 
         static const std::string STATUS;
 
-        ChatMemberBanned()
+        ChatMemberBanned() noexcept
         {
             status = STATUS;
         }
 
-        std::int32_t UntilDate;
+        std::int32_t UntilDate{};
     };
 }
 

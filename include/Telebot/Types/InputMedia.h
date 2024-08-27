@@ -12,7 +12,7 @@ namespace Telebot
     public:
         typedef std::shared_ptr<InputMedia> Ptr;
 
-        InputMedia() = default;
+        InputMedia() noexcept = default;
         virtual ~InputMedia() = default;
 
         std::string Type;

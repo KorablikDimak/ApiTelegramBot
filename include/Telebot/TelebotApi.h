@@ -2,6 +2,7 @@
 #define Telebot_BotApi_H
 
 #include <variant>
+#include <optional>
 
 #include <Telebot/Types/Update.h>
 #include <Telebot/Types/InputFile.h>
@@ -33,19 +34,19 @@ namespace Telebot
         std::string _token;
 
         [[nodiscard]]
-        Json::Json Get(const std::string& methodName) const;
+        std::optional<Json::Json> Get(const std::string& methodName) const noexcept;
         [[nodiscard]]
-        Json::Json Post(const std::string& methodName, const Json::Json& params) const;
+        std::optional<Json::Json> Post(const std::string& methodName, const Json::Json& params) const noexcept;
 
     public:
-        explicit TelebotApi(const std::string& token);
+        explicit TelebotApi(const std::string& token) noexcept;
         ~TelebotApi() = default;
 
         [[nodiscard]]
         std::vector<Update::Ptr> GetUpdates(std::int32_t offset = 0,
                                             std::int32_t limit = 100,
                                             std::int32_t timeout = 0,
-                                            const std::vector<std::string>& allowedUpdates = std::vector<std::string>()) const;
+                                            const std::vector<std::string>& allowedUpdates = std::vector<std::string>()) const noexcept;
 
         bool SetWebhook(const std::string& url,
                         const InputFile::Ptr& certificate = nullptr,
@@ -60,7 +61,7 @@ namespace Telebot
         WebhookInfo::Ptr GetWebhookInfo();
 
         [[nodiscard]]
-        User::Ptr GetMe() const;
+        User::Ptr GetMe() const noexcept;
 
         bool LogOut();
 
@@ -77,7 +78,7 @@ namespace Telebot
                                  const std::vector<MessageEntity::Ptr>& entities = std::vector<MessageEntity::Ptr>(),
                                  bool allowSendingWithoutReply = false,
                                  bool protectContent = false,
-                                 std::int32_t messageThreadId = 0) const;
+                                 std::int32_t messageThreadId = 0) const noexcept;
 
         Message::Ptr ForwardMessage(std::int64_t chatId,
                                     std::int64_t fromChatId,
@@ -111,7 +112,7 @@ namespace Telebot
                                bool allowSendingWithoutReply = false,
                                bool protectContent = false,
                                std::int32_t messageThreadId = 0,
-                               bool hasSpoiler = false) const;
+                               bool hasSpoiler = false) const noexcept;
 
         Message::Ptr SendAudio(std::int64_t chatId,
                                const std::variant<std::string, InputFile::Ptr>& audio,
@@ -190,7 +191,7 @@ namespace Telebot
                                const std::vector<MessageEntity::Ptr>& captionEntities = std::vector<MessageEntity::Ptr>(),
                                bool allowSendingWithoutReply = false,
                                bool protectContent = false,
-                               std::int32_t messageThreadId = 0) const;
+                               std::int32_t messageThreadId = 0) const noexcept;
 
         Message::Ptr SendVideoNote(std::int64_t chatId,
                                    const std::variant<std::string, InputFile::Ptr>& videoNote,
@@ -292,10 +293,10 @@ namespace Telebot
                                                     std::int32_t limit = 100);
 
         [[nodiscard]]
-        File::Ptr GetFile(const std::string& fileId) const;
+        File::Ptr GetFile(const std::string& fileId) const noexcept;
 
         [[nodiscard]]
-        std::string DownloadFile(const File::Ptr& file, const std::string& toDirectory) const;
+        std::string DownloadFile(const File::Ptr& file, const std::string& toDirectory) const noexcept;
 
         bool BanChatMember(std::int64_t chatId,
                            std::int64_t userId,
@@ -441,12 +442,12 @@ namespace Telebot
                                  const std::string& text = "",
                                  bool showAlert = false,
                                  const std::string& url = "",
-                                 std::int32_t cacheTime = 0) const;
+                                 std::int32_t cacheTime = 0) const noexcept;
 
         [[nodiscard]]
         bool SetMyCommands(const std::vector<BotCommand::Ptr>& commands,
                            const BotCommandScope::Ptr& scope = nullptr,
-                           const std::string& languageCode = "") const;
+                           const std::string& languageCode = "") const noexcept;
 
         bool DeleteMyCommands(const BotCommandScope::Ptr& scope = nullptr,
                               const std::string& languageCode = "");
@@ -482,7 +483,7 @@ namespace Telebot
                                      const std::string& parseMode = "",
                                      bool disableWebPagePreview = false,
                                      const GenericReply::Ptr& replyMarkup = nullptr,
-                                     const std::vector<MessageEntity::Ptr>& entities = std::vector<MessageEntity::Ptr>()) const;
+                                     const std::vector<MessageEntity::Ptr>& entities = std::vector<MessageEntity::Ptr>()) const noexcept;
 
         Message::Ptr EditMessageCaption(std::int64_t chatId = 0,
                                         std::int32_t messageId = 0,

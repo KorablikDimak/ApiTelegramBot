@@ -12,7 +12,7 @@ namespace Telebot
 
         static const std::string TYPE;
 
-        BotCommandScopeAllChatAdministrators()
+        BotCommandScopeAllChatAdministrators() noexcept
         {
             type = TYPE;
         }

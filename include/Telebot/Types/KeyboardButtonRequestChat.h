@@ -19,7 +19,7 @@ namespace Telebot
         bool bot_is_member;
     };
 
-    inline void to_json(Json::Json& json, const KeyboardButtonRequestChat::Ptr& object)
+    inline void to_json(Json::Json& json, const KeyboardButtonRequestChat::Ptr& object) noexcept
     {
         VALUE_TO_JSON(request_id)
         VALUE_TO_JSON(chat_is_channel)

@@ -26,7 +26,7 @@ namespace Telebot
         std::int64_t close_date;
     };
 
-    inline void from_json(const Json::Json& json, Poll& object)
+    inline void from_json(const Json::Json& json, Poll& object) noexcept
     {
         VALUE_FROM_JSON(id)
         VALUE_FROM_JSON(question)

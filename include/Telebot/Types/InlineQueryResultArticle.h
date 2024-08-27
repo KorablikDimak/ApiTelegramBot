@@ -13,7 +13,7 @@ namespace Telebot
 
         static const std::string TYPE;
 
-        InlineQueryResultArticle()
+        InlineQueryResultArticle() noexcept
         {
             Type = TYPE;
         }
@@ -21,11 +21,11 @@ namespace Telebot
         std::string Title;
         InputMessageContent::Ptr InputMessageContent;
         std::string Url;
-        bool HideUrl;
+        bool HideUrl{};
         std::string Description;
         std::string ThumbUrl;
-        std::int32_t ThumbWidth;
-        std::int32_t ThumbHeight;
+        std::int32_t ThumbWidth{};
+        std::int32_t ThumbHeight{};
     };
 }
 

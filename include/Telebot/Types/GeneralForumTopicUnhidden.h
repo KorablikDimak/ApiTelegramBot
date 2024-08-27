@@ -11,7 +11,7 @@ namespace Telebot
         typedef std::shared_ptr<GeneralForumTopicUnhidden> Ptr;
     };
 
-    inline void from_json(const Json::Json& json, GeneralForumTopicUnhidden& object) {}
+    inline void from_json(const Json::Json& json, GeneralForumTopicUnhidden& object) noexcept {}
 }
 
 #endif

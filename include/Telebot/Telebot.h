@@ -26,42 +26,43 @@ namespace Telebot
         static const std::int32_t LIMIT;
         std::int32_t _timeout;
 
-        void Accept();
+        void Accept() noexcept;
 
     public:
-        explicit Telebot(const std::string& token);
+        explicit Telebot(const std::string& token) noexcept;
         ~Telebot();
 
-        void Start();
-        void StartAsync();
+        void Start() noexcept;
+        void StartAsync() noexcept;
         void Stop() const noexcept;
 
         void SetTimeout(std::int32_t timeout) noexcept;
 
         [[nodiscard]]
         std::future<Message::Ptr> SendMessageAsync(const std::int64_t& chatId, const std::string& text,
-                                                   const GenericReply::Ptr& genericReply = nullptr) const;
+                                                   const GenericReply::Ptr& genericReply = nullptr) const noexcept;
         [[nodiscard]]
-        std::future<bool> SetCommandAsync(const std::string& command, const std::string& description) const;
+        std::future<bool> SetCommandAsync(const std::string& command, const std::string& description) const noexcept;
         [[nodiscard]]
-        std::future<bool> SetCommandAsync(const BotCommand::Ptr& command) const;
+        std::future<bool> SetCommandAsync(const BotCommand::Ptr& command) const noexcept;
         [[nodiscard]]
-        std::future<bool> SetCommandsAsync(const std::vector<std::pair<std::string, std::string>>& commands) const;
+        std::future<bool> SetCommandsAsync(const std::vector<std::pair<std::string, std::string>>& commands) const noexcept;
         [[nodiscard]]
-        std::future<bool> SetCommandsAsync(const std::vector<BotCommand::Ptr>& commands) const;
+        std::future<bool> SetCommandsAsync(const std::vector<BotCommand::Ptr>& commands) const noexcept;
         [[nodiscard]]
-        std::future<std::string> DownloadFileAsync(const std::string& fileId, const std::string& toDirectory) const;
+        std::future<std::string> DownloadFileAsync(const std::string& fileId, const std::string& toDirectory) const noexcept;
+        [[nodiscard]]
         std::future<Message::Ptr> SendPhotoAsync(const std::int64_t& chatId,
-                                                 const std::variant<std::string, InputFile::Ptr>& url);
+                                                 const std::variant<std::string, InputFile::Ptr>& url) const noexcept;
         [[nodiscard]]
         std::future<bool> AnswerCallbackQueryAsync(const std::string& callbackQueryId, const std::string& text = "",
-                                                   const bool& showAlert = false) const;
+                                                   const bool& showAlert = false) const noexcept;
         [[nodiscard]]
         std::future<Message::Ptr> EditMessageTextAsync(const std::int64_t& chatId, const std::int32_t& messageId,
-                                                       const std::string& text, const GenericReply::Ptr& genericReply = nullptr) const;
+                                                       const std::string& text, const GenericReply::Ptr& genericReply = nullptr) const noexcept;
         [[nodiscard]]
         std::future<Message::Ptr> SendVoiceAsync(const std::int64_t& chatId,
-                                                 const std::variant<std::string, InputFile::Ptr>& filePath) const;
+                                                 const std::variant<std::string, InputFile::Ptr>& filePath) const noexcept;
 
     private:
         MessageEvent _onAnyMessage;
@@ -72,17 +73,17 @@ namespace Telebot
         std::map<std::string, CallbackQueryEvent> _onCallbackQuery;
 
     public:
-        MessageEvent OnAnyMessage() noexcept;
+        MessageEvent& OnAnyMessage() noexcept;
         void OnAnyMessage(MessageHandler&& handler) const noexcept;
-        MessageEvent OnMessage(const std::string& message) noexcept;
+        MessageEvent& OnMessage(const std::string& message) noexcept;
         void OnMessage(const std::string& message, MessageHandler&& handler) noexcept;
-        MessageEvent OnCommand(const std::string& command) noexcept;
+        MessageEvent& OnCommand(const std::string& command) noexcept;
         void OnCommand(const std::string& command, MessageHandler&& handler) noexcept;
-        MessageEvent OnVoice() noexcept;
+        MessageEvent& OnVoice() noexcept;
         void OnVoice(MessageHandler&& handler) const noexcept;
-        CallbackQueryEvent OnAnyCallbackQuery() noexcept;
+        CallbackQueryEvent& OnAnyCallbackQuery() noexcept;
         void OnAnyCallbackQuery(CallbackHandler&& handler) const noexcept;
-        CallbackQueryEvent OnCallbackQuery(const std::string& callback_data) noexcept;
+        CallbackQueryEvent& OnCallbackQuery(const std::string& callback_data) noexcept;
         void OnCallbackQuery(const std::string& callback_data, CallbackHandler&& handler) noexcept;
     };
 }

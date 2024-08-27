@@ -26,7 +26,7 @@ namespace Telebot
         bool can_manage_topics;
     };
 
-    inline void from_json(const Json::Json& json, ChatPermissions& object)
+    inline void from_json(const Json::Json& json, ChatPermissions& object) noexcept
     {
         VALUE_FROM_JSON(can_send_messages)
         VALUE_FROM_JSON(can_send_audios)

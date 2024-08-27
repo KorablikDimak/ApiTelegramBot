@@ -22,10 +22,10 @@ namespace Telebot
         std::string input_field_placeholder;
         bool selective;
 
-        void ToJson(Json::Json& json, const GenericReply::Ptr& object) override;
+        void ToJson(Json::Json& json, const GenericReply::Ptr& object) noexcept override;
     };
 
-    inline void to_json(Json::Json& json, const ReplyKeyboardMarkup::Ptr& object)
+    inline void to_json(Json::Json& json, const ReplyKeyboardMarkup::Ptr& object) noexcept
     {
         json["keyboard"] = object->keyboard;
         VALUE_TO_JSON(is_persistent)

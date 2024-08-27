@@ -20,7 +20,7 @@ namespace Telebot
         Animation::Ptr animation;
     };
 
-    inline void from_json(const Json::Json& json, Game& object)
+    inline void from_json(const Json::Json& json, Game& object) noexcept
     {
         VALUE_FROM_JSON(title)
         VALUE_FROM_JSON(description)

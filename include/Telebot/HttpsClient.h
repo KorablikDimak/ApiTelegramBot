@@ -10,6 +10,7 @@
 #include <boost/asio/co_spawn.hpp>
 #include <boost/beast/core/flat_buffer.hpp>
 #include <boost/asio/detached.hpp>
+#include <boost/asio/awaitable.hpp>
 
 #include <Telebot/HttpContext.h>
 

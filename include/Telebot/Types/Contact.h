@@ -17,7 +17,7 @@ namespace Telebot
         std::string vcard;
     };
 
-    inline void from_json(const Json::Json& json, Contact& object)
+    inline void from_json(const Json::Json& json, Contact& object) noexcept
     {
         VALUE_FROM_JSON(phone_number)
         VALUE_FROM_JSON(first_name)

@@ -15,7 +15,7 @@ namespace Telebot
 
         static const std::string TYPE;
 
-        InputTextMessageContent()
+        InputTextMessageContent() noexcept
         {
             Type = TYPE;
         }
@@ -23,7 +23,7 @@ namespace Telebot
         std::string MessageText;
         std::string ParseMode;
         std::vector<MessageEntity::Ptr> Entities;
-        bool DisableWebPagePreview;
+        bool DisableWebPagePreview{};
     };
 }
 

@@ -13,22 +13,22 @@ namespace Telebot
 
         static const std::string TYPE;
 
-        InlineQueryResultLocation()
+        InlineQueryResultLocation() noexcept
         {
             Type = TYPE;
         }
 
-        float Latitude;
-        float Longitude;
+        float Latitude{};
+        float Longitude{};
         std::string Title;
-        float HorizontalAccuracy;
-        std::int32_t LivePeriod;
-        std::int32_t Heading;
-        std::int32_t ProximityAlertRadius;
+        float HorizontalAccuracy{};
+        std::int32_t LivePeriod{};
+        std::int32_t Heading{};
+        std::int32_t ProximityAlertRadius{};
         InputMessageContent::Ptr InputMessageContent;
         std::string ThumbUrl;
-        std::int32_t ThumbWidth;
-        std::int32_t ThumbHeight;
+        std::int32_t ThumbWidth{};
+        std::int32_t ThumbHeight{};
     };
 }
 

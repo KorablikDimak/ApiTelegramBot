@@ -14,7 +14,7 @@ namespace Telebot
 
         static const std::string TYPE;
 
-        InlineQueryResultVoice()
+        InlineQueryResultVoice() noexcept
         {
             Type = TYPE;
         };
@@ -24,7 +24,7 @@ namespace Telebot
         std::string Caption;
         std::string parseMode;
         std::vector<MessageEntity::Ptr> CaptionEntities;
-        std::int32_t VoiceDuration;
+        std::int32_t VoiceDuration{};
         InputMessageContent::Ptr InputMessageContent;
     };
 }

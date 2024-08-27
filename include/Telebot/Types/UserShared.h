@@ -14,7 +14,7 @@ namespace Telebot
         std::int64_t user_id;
     };
 
-    inline void from_json(const Json::Json& json, UserShared& object)
+    inline void from_json(const Json::Json& json, UserShared& object) noexcept
     {
         VALUE_FROM_JSON(request_id)
         VALUE_FROM_JSON(user_id)

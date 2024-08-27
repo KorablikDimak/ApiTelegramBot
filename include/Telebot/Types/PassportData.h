@@ -15,7 +15,7 @@ namespace Telebot
         EncryptedCredentials::Ptr credentials;
     };
 
-    inline void from_json(const Json::Json& json, PassportData& object)
+    inline void from_json(const Json::Json& json, PassportData& object) noexcept
     {
         OBJECTS_FROM_JSON(data)
         OBJECT_FROM_JSON(credentials)

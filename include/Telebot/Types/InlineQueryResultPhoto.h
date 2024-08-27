@@ -14,15 +14,15 @@ namespace Telebot
 
         static const std::string TYPE;
 
-        InlineQueryResultPhoto()
+        InlineQueryResultPhoto() noexcept
         {
             Type = TYPE;
         }
 
         std::string PhotoUrl;
         std::string ThumbUrl;
-        std::int32_t PhotoWidth;
-        std::int32_t PhotoHeight;
+        std::int32_t PhotoWidth{};
+        std::int32_t PhotoHeight{};
         std::string Title;
         std::string Description;
         std::string Caption;

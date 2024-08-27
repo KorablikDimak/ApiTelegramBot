@@ -14,7 +14,7 @@ namespace Telebot
 
         static const std::string TYPE;
 
-        InlineQueryResultCachedVoice()
+        InlineQueryResultCachedVoice() noexcept
         {
             Type = TYPE;
         }

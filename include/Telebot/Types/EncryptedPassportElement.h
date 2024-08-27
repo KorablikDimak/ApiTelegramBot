@@ -1,5 +1,5 @@
 #ifndef Telebot_EncryptedPassportElement_H
-#define Telebot_EncryptedPassportElementH
+#define Telebot_EncryptedPassportElement_H
 
 #include <Telebot/Types/PassportFile.h>
 
@@ -22,7 +22,7 @@ namespace Telebot
         std::string hash;
     };
 
-    inline void from_json(const Json::Json& json, EncryptedPassportElement& object)
+    inline void from_json(const Json::Json& json, EncryptedPassportElement& object) noexcept
     {
         VALUE_FROM_JSON(type)
         VALUE_FROM_JSON(data)

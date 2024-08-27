@@ -16,7 +16,7 @@ namespace Telebot
         std::int32_t file_date;
     };
 
-    inline void from_json(const Json::Json& json, PassportFile& object)
+    inline void from_json(const Json::Json& json, PassportFile& object) noexcept
     {
         VALUE_FROM_JSON(file_id)
         VALUE_FROM_JSON(file_unique_id)

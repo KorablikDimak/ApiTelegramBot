@@ -16,7 +16,7 @@ namespace Telebot
         std::string type;
     };
 
-    inline void to_json(Json::Json& json, const BotCommandScope::Ptr& object)
+    inline void to_json(Json::Json& json, const BotCommandScope::Ptr& object) noexcept
     {
         VALUE_TO_JSON(type)
     }

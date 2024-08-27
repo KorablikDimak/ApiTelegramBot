@@ -15,7 +15,7 @@ namespace Telebot
         std::string secret;
     };
 
-    inline void from_json(const Json::Json& json, EncryptedCredentials& object)
+    inline void from_json(const Json::Json& json, EncryptedCredentials& object) noexcept
     {
         VALUE_FROM_JSON(data)
         VALUE_FROM_JSON(hash)

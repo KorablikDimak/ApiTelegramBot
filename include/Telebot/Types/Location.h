@@ -18,7 +18,7 @@ namespace Telebot
         std::int32_t proximity_alert_radius;
     };
 
-    inline void from_json(const Json::Json& json, Location& object)
+    inline void from_json(const Json::Json& json, Location& object) noexcept
     {
         VALUE_FROM_JSON(longitude)
         VALUE_FROM_JSON(latitude)

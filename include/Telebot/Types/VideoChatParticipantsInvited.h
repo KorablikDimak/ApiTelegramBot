@@ -13,7 +13,7 @@ namespace Telebot
         std::vector<User::Ptr> users;
     };
 
-    inline void from_json(const Json::Json& json, VideoChatParticipantsInvited& object)
+    inline void from_json(const Json::Json& json, VideoChatParticipantsInvited& object) noexcept
     {
         OBJECTS_FROM_JSON(users)
     }

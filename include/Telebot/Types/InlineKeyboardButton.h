@@ -14,7 +14,7 @@ namespace Telebot
 
         InlineKeyboardButton() = default;
 
-        InlineKeyboardButton(const std::string& text, const std::string& callbackData)
+        InlineKeyboardButton(const std::string& text, const std::string& callbackData) noexcept
         {
             this->text = text;
             this->callback_data = callbackData;
@@ -28,10 +28,10 @@ namespace Telebot
         std::string switch_inline_query;
         std::string switch_inline_query_current_chat;
         CallbackGame::Ptr callback_game;
-        bool pay;
+        bool pay{};
     };
 
-    inline void from_json(const Json::Json& json, InlineKeyboardButton& object)
+    inline void from_json(const Json::Json& json, InlineKeyboardButton& object) noexcept
     {
         VALUE_FROM_JSON(text)
         VALUE_FROM_JSON(url)
@@ -44,7 +44,7 @@ namespace Telebot
         VALUE_FROM_JSON(pay)
     }
 
-    inline void to_json(Json::Json& json, const InlineKeyboardButton::Ptr& object)
+    inline void to_json(Json::Json& json, const InlineKeyboardButton::Ptr& object) noexcept
     {
         VALUE_TO_JSON(text)
         if (!object->url.empty()) VALUE_TO_JSON(url)

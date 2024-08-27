@@ -12,7 +12,7 @@ namespace Telebot
 
         static const std::string TYPE;
 
-        BotCommandScopeDefault()
+        BotCommandScopeDefault() noexcept
         {
             type = TYPE;
         }

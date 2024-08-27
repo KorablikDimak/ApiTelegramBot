@@ -12,7 +12,7 @@ namespace Telebot
 
         static const std::string STATUS;
 
-        ChatMemberLeft()
+        ChatMemberLeft() noexcept
         {
             status = STATUS;
         }

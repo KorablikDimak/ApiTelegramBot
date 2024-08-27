@@ -12,13 +12,13 @@ namespace Telebot
 
         static const std::string TYPE;
 
-        BotCommandScopeChatMember()
+        BotCommandScopeChatMember() noexcept
         {
             type = TYPE;
         }
 
-        std::int64_t ChatId;
-        std::int64_t UserId;
+        std::int64_t ChatId{};
+        std::int64_t UserId{};
     };
 }
 

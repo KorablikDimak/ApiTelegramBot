@@ -12,16 +12,16 @@ namespace Telebot
 
         static const std::string TYPE;
 
-        InputMediaAnimation()
+        InputMediaAnimation() noexcept
         {
             Type = TYPE;
         }
 
         std::string Thumb;
-        std::int32_t Width;
-        std::int32_t Height;
-        std::int32_t Duration;
-        bool HasSpoiler;
+        std::int32_t Width{};
+        std::int32_t Height{};
+        std::int32_t Duration{};
+        bool HasSpoiler{};
     };
 }
 

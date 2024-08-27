@@ -15,13 +15,13 @@ namespace Telebot
 
         std::vector<std::vector<InlineKeyboardButton::Ptr>> inline_keyboard;
 
-        void SetButton(const InlineKeyboardButton::Ptr& button, unsigned char row, unsigned char column);
-        void RemoveButton(unsigned char row, unsigned char column);
+        void SetButton(const InlineKeyboardButton::Ptr& button, unsigned char row, unsigned char column) noexcept;
+        void RemoveButton(unsigned char row, unsigned char column) noexcept;
 
-        void ToJson(Json::Json& json, const GenericReply::Ptr& object) override;
+        void ToJson(Json::Json& json, const GenericReply::Ptr& object) noexcept override;
     };
 
-    inline void from_json(const Json::Json& json, InlineKeyboardMarkup& object)
+    inline void from_json(const Json::Json& json, InlineKeyboardMarkup& object) noexcept
     {
         if (json.contains("inline_keyboard"))
             for (const Json::Json& element : json.at("inline_keyboard"))
@@ -37,7 +37,7 @@ namespace Telebot
             }
     }
 
-    inline void to_json(Json::Json& json, const InlineKeyboardMarkup::Ptr& object)
+    inline void to_json(Json::Json& json, const InlineKeyboardMarkup::Ptr& object) noexcept
     {
         json["inline_keyboard"] = object->inline_keyboard;
     }

@@ -12,7 +12,7 @@ namespace Telebot
 
         static const std::string TYPE;
 
-        InputContactMessageContent()
+        InputContactMessageContent() noexcept
         {
             Type = TYPE;
         }

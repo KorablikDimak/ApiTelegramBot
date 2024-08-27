@@ -13,7 +13,7 @@ namespace Telebot
 
         static const std::string TYPE;
 
-        InlineQueryResultContact()
+        InlineQueryResultContact() noexcept
         {
             Type = TYPE;
         }
@@ -24,8 +24,8 @@ namespace Telebot
         std::string Vcard;
         InputMessageContent::Ptr InputMessageContent;
         std::string ThumbUrl;
-        std::int32_t ThumbWidth;
-        std::int32_t ThumbHeight;
+        std::int32_t ThumbWidth{};
+        std::int32_t ThumbHeight{};
     };
 }
 

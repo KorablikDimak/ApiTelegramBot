@@ -24,7 +24,7 @@ namespace Telebot
         bool can_manage_topics;
     };
 
-    inline void to_json(Json::Json& json, const ChatAdministratorRights::Ptr& object)
+    inline void to_json(Json::Json& json, const ChatAdministratorRights::Ptr& object) noexcept
     {
         VALUE_TO_JSON(is_anonymous)
         VALUE_TO_JSON(can_manage_chat)

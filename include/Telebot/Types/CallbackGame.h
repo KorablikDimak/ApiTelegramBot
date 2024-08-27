@@ -11,8 +11,8 @@ namespace Telebot
         typedef std::shared_ptr<CallbackGame> Ptr;
     };
 
-    inline void from_json(const Json::Json& json, CallbackGame& object) {}
-    inline void to_json(Json::Json& json, const CallbackGame::Ptr& object) {}
+    inline void from_json(const Json::Json& json, CallbackGame& object) noexcept {}
+    inline void to_json(Json::Json& json, const CallbackGame::Ptr& object) noexcept {}
 }
 
 #endif

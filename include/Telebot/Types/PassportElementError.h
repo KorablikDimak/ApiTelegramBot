@@ -11,7 +11,7 @@ namespace Telebot
     public:
         typedef std::shared_ptr<PassportElementError> Ptr;
 
-        PassportElementError() = default;
+        PassportElementError() noexcept = default;
         virtual ~PassportElementError() = default;
 
         std::string Source;

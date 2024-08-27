@@ -21,7 +21,7 @@ namespace Telebot
         ChatInviteLink::Ptr invite_link;
     };
 
-    inline void from_json(const Json::Json& json, ChatMemberUpdated& object)
+    inline void from_json(const Json::Json& json, ChatMemberUpdated& object) noexcept
     {
         OBJECT_FROM_JSON(chat)
         OBJECT_FROM_JSON(from)

@@ -12,13 +12,13 @@ namespace Telebot
 
         static const std::string TYPE;
 
-        InputMediaDocument()
+        InputMediaDocument() noexcept
         {
             Type = TYPE;
         }
 
         std::string Thumb;
-        bool DisableContentTypeDetection;
+        bool DisableContentTypeDetection{};
     };
 }
 

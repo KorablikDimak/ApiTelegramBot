@@ -13,7 +13,7 @@ namespace Telebot
         std::string type;
     };
 
-    inline void to_json(Json::Json& json, const KeyboardButtonPollType::Ptr& object)
+    inline void to_json(Json::Json& json, const KeyboardButtonPollType::Ptr& object) noexcept
     {
         VALUE_TO_JSON(type)
     }

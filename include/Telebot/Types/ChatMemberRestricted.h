@@ -12,27 +12,27 @@ namespace Telebot
 
         static const std::string STATUS;
 
-        ChatMemberRestricted()
+        ChatMemberRestricted() noexcept
         {
             status = STATUS;
         }
 
-        bool IsMember;
-        bool CanSendMessages;
-        bool CanSendAudios;
-        bool CanSendDocuments;
-        bool CanSendPhotos;
-        bool CanSendVideos;
-        bool CanSendVideoNotes;
-        bool CanSendVoiceNotes;
-        bool CanSendPolls;
-        bool CanSendOtherMessages;
-        bool CanAddWebPagePreviews;
-        bool CanChangeInfo;
-        bool CanInviteUsers;
-        bool CanPinMessages;
-        bool CanManageTopics;
-        std::uint32_t UntilDate;
+        bool IsMember{};
+        bool CanSendMessages{};
+        bool CanSendAudios{};
+        bool CanSendDocuments{};
+        bool CanSendPhotos{};
+        bool CanSendVideos{};
+        bool CanSendVideoNotes{};
+        bool CanSendVoiceNotes{};
+        bool CanSendPolls{};
+        bool CanSendOtherMessages{};
+        bool CanAddWebPagePreviews{};
+        bool CanChangeInfo{};
+        bool CanInviteUsers{};
+        bool CanPinMessages{};
+        bool CanManageTopics{};
+        std::uint32_t UntilDate{};
     };
 }
 

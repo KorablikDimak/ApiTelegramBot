@@ -14,7 +14,7 @@ namespace Telebot
 
         static const std::string TYPE;
 
-        InlineQueryResultVideo()
+        InlineQueryResultVideo() noexcept
         {
             Type = TYPE;
         };
@@ -26,9 +26,9 @@ namespace Telebot
         std::string Caption;
         std::string ParseMode;
         std::vector<MessageEntity::Ptr> CaptionEntities;
-        std::int32_t VideoWidth;
-        std::int32_t VideoHeight;
-        std::int32_t VideoDuration;
+        std::int32_t VideoWidth{};
+        std::int32_t VideoHeight{};
+        std::int32_t VideoDuration{};
         std::string Description;
         InputMessageContent::Ptr InputMessageContent;
     };

@@ -16,7 +16,7 @@ namespace Telebot
         float scale;
     };
 
-    inline void from_json(const Json::Json& json, MaskPosition& object)
+    inline void from_json(const Json::Json& json, MaskPosition& object) noexcept
     {
         VALUE_FROM_JSON(point)
         VALUE_FROM_JSON(x_shift)

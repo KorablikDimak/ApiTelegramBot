@@ -13,12 +13,12 @@ namespace Telebot
         std::string url;
     };
 
-    inline void from_json(const Json::Json& json, WebAppInfo& object)
+    inline void from_json(const Json::Json& json, WebAppInfo& object) noexcept
     {
         VALUE_FROM_JSON(url)
     }
 
-    inline void to_json(Json::Json& json, const WebAppInfo::Ptr& object)
+    inline void to_json(Json::Json& json, const WebAppInfo::Ptr& object) noexcept
     {
         VALUE_TO_JSON(url)
     }

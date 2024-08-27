@@ -10,7 +10,7 @@ namespace Telebot
     public:
         typedef std::shared_ptr<InlineQueryResult> Ptr;
 
-        InlineQueryResult() = default;
+        InlineQueryResult() noexcept = default;
         virtual ~InlineQueryResult() = default;
 
         std::string Type;

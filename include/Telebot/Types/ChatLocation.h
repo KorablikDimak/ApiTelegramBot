@@ -14,7 +14,7 @@ namespace Telebot
         std::string address;
     };
 
-    inline void from_json(const Json::Json& json, ChatLocation& object)
+    inline void from_json(const Json::Json& json, ChatLocation& object) noexcept
     {
         OBJECT_FROM_JSON(location)
         VALUE_FROM_JSON(address)

@@ -15,7 +15,7 @@ namespace Telebot
 
         static const std::string TYPE;
 
-        InputInvoiceMessageContent()
+        InputInvoiceMessageContent() noexcept
         {
             Type = TYPE;
         }
@@ -26,20 +26,20 @@ namespace Telebot
         std::string ProviderToken;
         std::string Currency;
         std::vector<LabeledPrice::Ptr> Prices;
-        std::int32_t MaxTipAmount;
+        std::int32_t MaxTipAmount{};
         std::vector<std::int32_t> SuggestedTipAmounts;
         std::string ProviderData;
         std::string PhotoUrl;
-        std::int32_t PhotoSize;
-        std::int32_t PhotoWidth;
-        std::int32_t PhotoHeight;
-        bool NeedName;
-        bool NeedPhoneNumber;
-        bool NeedEmail;
-        bool NeedShippingAddress;
-        bool SendPhoneNumberToProvider;
-        bool SendEmailToProvider;
-        bool IsFlexible;
+        std::int32_t PhotoSize{};
+        std::int32_t PhotoWidth{};
+        std::int32_t PhotoHeight{};
+        bool NeedName{};
+        bool NeedPhoneNumber{};
+        bool NeedEmail{};
+        bool NeedShippingAddress{};
+        bool SendPhoneNumberToProvider{};
+        bool SendEmailToProvider{};
+        bool IsFlexible{};
     };
 }
 

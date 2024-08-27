@@ -12,13 +12,13 @@ namespace Telebot
 
         static const std::string TYPE;
 
-        InputVenueMessageContent()
+        InputVenueMessageContent() noexcept
         {
             Type = TYPE;
         }
 
-        float Latitude;
-        float Longitude;
+        float Latitude{};
+        float Longitude{};
         std::string Title;
         std::string Address;
         std::string FoursquareId;

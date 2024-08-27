@@ -13,13 +13,13 @@ namespace Telebot
 
         static const std::string TYPE;
 
-        InlineQueryResultVenue()
+        InlineQueryResultVenue() noexcept
         {
             Type = TYPE;
         }
 
-        float Latitude;
-        float Longitude;
+        float Latitude{};
+        float Longitude{};
         std::string Title;
         std::string Address;
         std::string FoursquareId;
@@ -28,8 +28,8 @@ namespace Telebot
         std::string GooglePlaceType;
         InputMessageContent::Ptr InputMessageContent;
         std::string ThumbUrl;
-        std::int32_t ThumbWidth;
-        std::int32_t ThumbHeight;
+        std::int32_t ThumbWidth{};
+        std::int32_t ThumbHeight{};
     };
 }
 

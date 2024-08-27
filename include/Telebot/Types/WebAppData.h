@@ -14,7 +14,7 @@ namespace Telebot
         std::string button_text;
     };
 
-    inline void from_json(const Json::Json& json, WebAppData& object)
+    inline void from_json(const Json::Json& json, WebAppData& object) noexcept
     {
         VALUE_FROM_JSON(data)
         VALUE_FROM_JSON(button_text)

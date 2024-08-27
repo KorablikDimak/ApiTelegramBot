@@ -12,7 +12,7 @@ namespace Telebot
 
         static const std::string SOURCE;
 
-        PassportElementErrorTranslationFile()
+        PassportElementErrorTranslationFile() noexcept
         {
             Source = SOURCE;
         }

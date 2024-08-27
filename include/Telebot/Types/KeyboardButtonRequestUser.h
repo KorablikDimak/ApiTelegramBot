@@ -15,7 +15,7 @@ namespace Telebot
         bool user_is_premium;
     };
 
-    inline void to_json(Json::Json& json, const KeyboardButtonRequestUser::Ptr& object)
+    inline void to_json(Json::Json& json, const KeyboardButtonRequestUser::Ptr& object) noexcept
     {
         VALUE_TO_JSON(request_id)
         VALUE_TO_JSON(user_is_bot)

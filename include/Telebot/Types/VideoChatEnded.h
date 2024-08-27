@@ -13,7 +13,7 @@ namespace Telebot
         std::int32_t duration;
     };
 
-    inline void from_json(const Json::Json& json, VideoChatEnded& object)
+    inline void from_json(const Json::Json& json, VideoChatEnded& object) noexcept
     {
         VALUE_FROM_JSON(duration)
     }

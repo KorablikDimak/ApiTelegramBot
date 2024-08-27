@@ -20,7 +20,7 @@ namespace Telebot
         OrderInfo::Ptr order_info;
     };
 
-    inline void from_json(const Json::Json& json, PreCheckoutQuery& object)
+    inline void from_json(const Json::Json& json, PreCheckoutQuery& object) noexcept
     {
         VALUE_FROM_JSON(id)
         OBJECT_FROM_JSON(from)

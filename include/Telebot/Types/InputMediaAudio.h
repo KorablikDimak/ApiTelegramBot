@@ -12,13 +12,13 @@ namespace Telebot
 
         static const std::string TYPE;
 
-        InputMediaAudio()
+        InputMediaAudio() noexcept
         {
             Type = TYPE;
         }
 
         std::string Thumb;
-        std::int32_t Duration;
+        std::int32_t Duration{};
         std::string Performer;
         std::string Title;
     };

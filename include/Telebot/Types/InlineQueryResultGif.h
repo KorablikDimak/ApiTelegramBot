@@ -14,15 +14,15 @@ namespace Telebot
 
         static const std::string TYPE;
 
-        InlineQueryResultGif()
+        InlineQueryResultGif() noexcept
         {
             Type = TYPE;
         }
 
         std::string GifUrl;
-        std::int32_t GifWidth;
-        std::int32_t GifHeight;
-        std::int32_t GifDuration;
+        std::int32_t GifWidth{};
+        std::int32_t GifHeight{};
+        std::int32_t GifDuration{};
         std::string ThumbUrl;
         std::string ThumbMimeType;
         std::string Title;

@@ -11,7 +11,7 @@ namespace Telebot
         typedef std::shared_ptr<VideoChatStarted> Ptr;
     };
 
-    inline void from_json(const Json::Json& json, VideoChatStarted& object) {}
+    inline void from_json(const Json::Json& json, VideoChatStarted& object) noexcept {}
 }
 
 #endif

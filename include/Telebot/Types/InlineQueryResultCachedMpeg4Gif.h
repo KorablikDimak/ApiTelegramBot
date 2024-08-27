@@ -14,7 +14,7 @@ namespace Telebot
 
         static const std::string TYPE;
 
-        InlineQueryResultCachedMpeg4Gif()
+        InlineQueryResultCachedMpeg4Gif() noexcept
         {
             Type = TYPE;
         }

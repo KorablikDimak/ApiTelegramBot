@@ -16,7 +16,7 @@ namespace Telebot
         std::string big_file_unique_id;
     };
 
-    inline void from_json(const Json::Json& json, ChatPhoto& object)
+    inline void from_json(const Json::Json& json, ChatPhoto& object) noexcept
     {
         VALUE_FROM_JSON(small_file_id)
         VALUE_FROM_JSON(small_file_unique_id)

@@ -17,7 +17,7 @@ namespace Telebot
         std::int32_t total_amount;
     };
 
-    inline void from_json(const Json::Json& json, Invoice& object)
+    inline void from_json(const Json::Json& json, Invoice& object) noexcept
     {
         VALUE_FROM_JSON(title)
         VALUE_FROM_JSON(description)

@@ -19,7 +19,7 @@ namespace Telebot
         Location::Ptr location;
     };
 
-    inline void from_json(const Json::Json& json, InlineQuery& object)
+    inline void from_json(const Json::Json& json, InlineQuery& object) noexcept
     {
         VALUE_FROM_JSON(id)
         OBJECT_FROM_JSON(from)

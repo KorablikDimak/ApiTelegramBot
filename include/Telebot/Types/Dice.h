@@ -14,7 +14,7 @@ namespace Telebot
         std::int32_t value;
     };
 
-    inline void from_json(const Json::Json& json, Dice& object)
+    inline void from_json(const Json::Json& json, Dice& object) noexcept
     {
         VALUE_FROM_JSON(emoji)
         VALUE_FROM_JSON(value)

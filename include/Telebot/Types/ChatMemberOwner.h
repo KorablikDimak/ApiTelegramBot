@@ -12,13 +12,13 @@ namespace Telebot
 
         static const std::string STATUS;
 
-        ChatMemberOwner()
+        ChatMemberOwner() noexcept
         {
             status = STATUS;
         }
 
         std::string CustomTitle;
-        bool IsAnonymous;
+        bool IsAnonymous{};
     };
 }
 

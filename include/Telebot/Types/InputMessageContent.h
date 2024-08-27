@@ -11,7 +11,7 @@ namespace Telebot
     public:
         typedef std::shared_ptr<InputMessageContent> Ptr;
 
-        InputMessageContent() = default;
+        InputMessageContent() noexcept = default;
         virtual ~InputMessageContent() = default;
 
         std::string Type;

@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.5)
 
 project(Telebot
-        VERSION 1.0.0
+        VERSION 1.1.0
         DESCRIPTION "Library for connect to telegram bot api"
         LANGUAGES CXX)
 
@@ -27,7 +27,9 @@ set_if_undefined(Telebot_INSTALL_CMAKEDIR
 
 set(Telebot_INCLUDES
         include/Telebot/Telebot.h
-        include/Telebot/TelebotApi.h)
+        include/Telebot/TelebotApi.h
+        include/Telebot/HttpContext.h
+        include/Telebot/HttpsClient.h)
 
 set(Telebot_SOURCE
         src/Telebot/Telebot.cpp
@@ -65,6 +67,7 @@ endif()
 
 if(MSVC)
     target_compile_options(Telebot PRIVATE /bigobj)
+    target_compile_definitions(Telebot PRIVATE _WIN32_WINNT=0x0601)
 elseif(CMAKE_BUILD_TYPE MATCHES "Debug")
     target_compile_options(Telebot PRIVATE -O1 -Wa,-mbig-obj)
 endif()

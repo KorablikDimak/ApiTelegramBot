@@ -13,7 +13,7 @@ namespace Telebot
         std::int32_t start_date;
     };
 
-    inline void from_json(const Json::Json& json, VideoChatScheduled& object)
+    inline void from_json(const Json::Json& json, VideoChatScheduled& object) noexcept
     {
         VALUE_FROM_JSON(start_date)
     }

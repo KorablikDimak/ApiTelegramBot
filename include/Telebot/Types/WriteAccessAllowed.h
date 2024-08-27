@@ -11,7 +11,7 @@ namespace Telebot
         typedef std::shared_ptr<WriteAccessAllowed> Ptr;
     };
 
-    inline void from_json(const Json::Json& json, WriteAccessAllowed& object) {}
+    inline void from_json(const Json::Json& json, WriteAccessAllowed& object) noexcept {}
 }
 
 #endif

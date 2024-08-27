@@ -12,10 +12,10 @@ namespace Telebot
 
         virtual ~GenericReply() = default;
 
-        virtual void ToJson(Json::Json& json, const GenericReply::Ptr& object);
+        virtual void ToJson(Json::Json& json, const GenericReply::Ptr& object) noexcept;
     };
 
-    inline void to_json(Json::Json& json, const GenericReply::Ptr& object)
+    inline void to_json(Json::Json& json, const GenericReply::Ptr& object) noexcept
     {
         object->ToJson(json, object);
     }

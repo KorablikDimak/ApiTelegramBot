@@ -47,24 +47,24 @@ namespace Telebot
     public:
         typedef std::shared_ptr<Message> Ptr;
 
-        std::int32_t message_id;
-        std::int32_t message_thread_id;
+        std::int32_t message_id{};
+        std::int32_t message_thread_id{};
         User::Ptr from;
         Chat::Ptr sender_chat;
-        std::int32_t date;
+        std::int32_t date{};
         Chat::Ptr chat;
         User::Ptr forward_from;
         Chat::Ptr forward_fromChat;
-        std::int32_t forward_from_message_id;
+        std::int32_t forward_from_message_id{};
         std::string forward_signature;
         std::string forward_sender_name;
-        std::int32_t forward_date;
-        bool is_topic_message;
-        bool is_automatic_forward;
+        std::int32_t forward_date{};
+        bool is_topic_message{};
+        bool is_automatic_forward{};
         Message::Ptr reply_to_message;
         User::Ptr via_bot;
-        std::int32_t edit_date;
-        bool has_protected_content;
+        std::int32_t edit_date{};
+        bool has_protected_content{};
         std::string media_group_id;
         std::string author_signature;
         std::string text;
@@ -79,7 +79,7 @@ namespace Telebot
         Voice::Ptr voice;
         std::string caption;
         std::vector<MessageEntity::Ptr> caption_entities;
-        bool has_media_spoiler;
+        bool has_media_spoiler{};
         Contact::Ptr contact;
         Dice::Ptr dice;
         Game::Ptr game;
@@ -90,13 +90,13 @@ namespace Telebot
         User::Ptr left_chat_member;
         std::string new_chat_title;
         std::vector<PhotoSize::Ptr> new_chat_photo;
-        bool delete_chat_photo;
-        bool group_chat_created;
-        bool supergroup_chat_created;
-        bool channel_chat_created;
+        bool delete_chat_photo{};
+        bool group_chat_created{};
+        bool supergroup_chat_created{};
+        bool channel_chat_created{};
         MessageAutoDeleteTimerChanged::Ptr message_auto_delete_timer_changed;
-        std::int64_t migrate_to_chat_id;
-        std::int64_t migrate_from_chat_id;
+        std::int64_t migrate_to_chat_id{};
+        std::int64_t migrate_from_chat_id{};
         Message::Ptr pinned_message;
         Invoice::Ptr invoice;
         SuccessfulPayment::Ptr successful_payment;
@@ -120,7 +120,7 @@ namespace Telebot
         InlineKeyboardMarkup::Ptr reply_markup;
     };
 
-    inline void from_json(const Json::Json& json, Message& object)
+    inline void from_json(const Json::Json& json, Message& object) noexcept
     {
         VALUE_FROM_JSON(message_id)
         VALUE_FROM_JSON(message_thread_id)

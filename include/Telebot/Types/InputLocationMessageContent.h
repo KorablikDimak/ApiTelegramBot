@@ -12,17 +12,17 @@ namespace Telebot
 
         static const std::string TYPE;
 
-        InputLocationMessageContent()
+        InputLocationMessageContent() noexcept
         {
             Type = TYPE;
         }
 
-        float Latitude;
-        float Longitude;
-        float HorizontalAccuracy;
-        std::int32_t LivePeriod;
-        std::int32_t Heading;
-        std::int32_t ProximityAlertRadius;
+        float Latitude{};
+        float Longitude{};
+        float HorizontalAccuracy{};
+        std::int32_t LivePeriod{};
+        std::int32_t Heading{};
+        std::int32_t ProximityAlertRadius{};
     };
 }
 

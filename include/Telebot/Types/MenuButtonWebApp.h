@@ -13,7 +13,7 @@ namespace Telebot
 
         static const std::string TYPE;
 
-        MenuButtonWebApp()
+        MenuButtonWebApp() noexcept
         {
             Type = TYPE;
         }
