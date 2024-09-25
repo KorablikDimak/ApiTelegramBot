@@ -75,7 +75,8 @@ void Telebot::Telebot::Start() noexcept
     {
         _acceptorTokenSource = std::make_unique<Common::CancellationTokenSource>();
         const User::Ptr user = _api->GetMe();
-        if (!user || !user->is_bot) return;
+        if (!user || !user->is_bot)
+            return;
         Accept();
     }
 }
@@ -86,7 +87,8 @@ void Telebot::Telebot::StartAsync() noexcept
     {
         _acceptorTokenSource = std::make_unique<Common::CancellationTokenSource>();
         const User::Ptr user = _api->GetMe();
-        if (!user || !user->is_bot) return;
+        if (!user || !user->is_bot)
+            return;
         _acceptor = std::async(std::launch::async, [this](){ Accept(); });
     }
 }
@@ -100,7 +102,8 @@ void Telebot::Telebot::Stop() const noexcept
 
 void Telebot::Telebot::SetTimeout(const std::int32_t timeout) noexcept
 {
-    if (timeout < 0 || timeout > 100) return;
+    if (timeout < 0 || timeout > 100)
+        return;
     _timeout = timeout;
 }
 

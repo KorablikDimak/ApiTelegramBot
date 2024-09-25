@@ -20,7 +20,7 @@ void Telebot::InlineKeyboardMarkup::RemoveButton(const unsigned char row, const 
     inline_keyboard[row].erase(inline_keyboard[row].begin() + column);
 }
 
-void Telebot::GenericReply::ToJson(Json::Json& json, const GenericReply::Ptr& object) noexcept {}
+void Telebot::GenericReply::ToJson([[maybe_unused]] Json::Json& json, [[maybe_unused]] const GenericReply::Ptr& object) noexcept {} // TODO Telebot::GenericReply::ToJson
 
 void Telebot::InlineKeyboardMarkup::ToJson(Json::Json& json, const GenericReply::Ptr& object) noexcept
 {
