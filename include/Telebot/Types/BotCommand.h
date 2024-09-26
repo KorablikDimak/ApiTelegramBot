@@ -1,7 +1,7 @@
 #ifndef Telebot_BotCommand_H
 #define Telebot_BotCommand_H
 
-#include <Json/Json.h>
+#include <ExtendedCpp/Json.h>
 
 namespace Telebot
 {
@@ -24,13 +24,13 @@ namespace Telebot
         std::string description;
     };
 
-    inline void from_json(const Json::Json& json, BotCommand& object) noexcept
+    inline void from_json(const ExtendedCpp::Json& json, BotCommand& object) noexcept
     {
         VALUE_FROM_JSON(command)
         VALUE_FROM_JSON(description)
     }
 
-    inline void to_json(Json::Json& json, const BotCommand::Ptr& object) noexcept
+    inline void to_json(ExtendedCpp::Json& json, const BotCommand::Ptr& object) noexcept
     {
         VALUE_TO_JSON(command)
         VALUE_TO_JSON(description)

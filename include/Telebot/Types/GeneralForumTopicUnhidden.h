@@ -1,7 +1,7 @@
 #ifndef Telebot_GeneralForumTopicUnhidden_H
 #define Telebot_GeneralForumTopicUnhidden_H
 
-#include <Json/Json.h>
+#include <ExtendedCpp/Json.h>
 
 namespace Telebot
 {
@@ -11,7 +11,7 @@ namespace Telebot
         typedef std::shared_ptr<GeneralForumTopicUnhidden> Ptr;
     };
 
-    inline void from_json(const Json::Json& json, GeneralForumTopicUnhidden& object) noexcept {}
+    inline void from_json(const ExtendedCpp::Json& json, GeneralForumTopicUnhidden& object) noexcept {}
 }
 
 #endif

@@ -49,7 +49,7 @@ namespace Telebot
         ChatLocation::Ptr location;
     };
 
-    inline void from_json(const Json::Json& json, Chat& object) noexcept
+    inline void from_json(const ExtendedCpp::Json& json, Chat& object) noexcept
     {
         VALUE_FROM_JSON(id)
         VALUE_FROM_JSON(type)

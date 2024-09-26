@@ -19,7 +19,7 @@ namespace Telebot
         std::string google_place_type;
     };
 
-    inline void from_json(const Json::Json& json, Venue& object) noexcept
+    inline void from_json(const ExtendedCpp::Json& json, Venue& object) noexcept
     {
         OBJECT_FROM_JSON(location)
         VALUE_FROM_JSON(title)

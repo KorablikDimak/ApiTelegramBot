@@ -17,7 +17,7 @@ namespace Telebot
         ShippingAddress::Ptr shipping_address;
     };
 
-    inline void from_json(const Json::Json& json, ShippingQuery& object) noexcept
+    inline void from_json(const ExtendedCpp::Json& json, ShippingQuery& object) noexcept
     {
         VALUE_FROM_JSON(id)
         OBJECT_FROM_JSON(from)

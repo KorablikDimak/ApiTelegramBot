@@ -1,7 +1,7 @@
 #ifndef Telebot_PhotoSize_H
 #define Telebot_PhotoSize_H
 
-#include <Json/Json.h>
+#include <ExtendedCpp/Json.h>
 
 namespace Telebot
 {
@@ -17,7 +17,7 @@ namespace Telebot
         std::int32_t file_size;
     };
 
-    inline void from_json(const Json::Json& json, PhotoSize& object) noexcept
+    inline void from_json(const ExtendedCpp::Json& json, PhotoSize& object) noexcept
     {
         VALUE_FROM_JSON(file_id)
         VALUE_FROM_JSON(file_unique_id)

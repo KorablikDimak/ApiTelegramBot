@@ -1,7 +1,7 @@
 #ifndef Telebot_VideoChatEnded_H
 #define Telebot_VideoChatEnded_H
 
-#include <Json/Json.h>
+#include <ExtendedCpp/Json.h>
 
 namespace Telebot
 {
@@ -13,7 +13,7 @@ namespace Telebot
         std::int32_t duration;
     };
 
-    inline void from_json(const Json::Json& json, VideoChatEnded& object) noexcept
+    inline void from_json(const ExtendedCpp::Json& json, VideoChatEnded& object) noexcept
     {
         VALUE_FROM_JSON(duration)
     }

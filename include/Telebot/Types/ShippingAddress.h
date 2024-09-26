@@ -1,7 +1,7 @@
 #ifndef Telebot_ShippingAddress_H
 #define Telebot_ShippingAddress_H
 
-#include <Json/Json.h>
+#include <ExtendedCpp/Json.h>
 
 namespace Telebot
 {
@@ -18,7 +18,7 @@ namespace Telebot
         std::string post_code;
     };
 
-    inline void from_json(const Json::Json& json, ShippingAddress& object) noexcept
+    inline void from_json(const ExtendedCpp::Json& json, ShippingAddress& object) noexcept
     {
         VALUE_FROM_JSON(country_code)
         VALUE_FROM_JSON(state)

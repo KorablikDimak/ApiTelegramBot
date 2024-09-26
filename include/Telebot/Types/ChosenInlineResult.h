@@ -18,7 +18,7 @@ namespace Telebot
         std::string query;
     };
 
-    inline void from_json(const Json::Json& json, ChosenInlineResult& object) noexcept
+    inline void from_json(const ExtendedCpp::Json& json, ChosenInlineResult& object) noexcept
     {
         VALUE_FROM_JSON(result_id)
         OBJECT_FROM_JSON(from)

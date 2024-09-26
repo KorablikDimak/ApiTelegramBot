@@ -1,7 +1,7 @@
 #ifndef Telebot_GenericReply_H
 #define Telebot_GenericReply_H
 
-#include <Json/Json.h>
+#include <ExtendedCpp/Json.h>
 
 namespace Telebot
 {
@@ -12,10 +12,10 @@ namespace Telebot
 
         virtual ~GenericReply() = default;
 
-        virtual void ToJson(Json::Json& json, const GenericReply::Ptr& object) noexcept;
+        virtual void ToJson(ExtendedCpp::Json& json, const GenericReply::Ptr& object) noexcept;
     };
 
-    inline void to_json(Json::Json& json, const GenericReply::Ptr& object) noexcept
+    inline void to_json(ExtendedCpp::Json& json, const GenericReply::Ptr& object) noexcept
     {
         object->ToJson(json, object);
     }

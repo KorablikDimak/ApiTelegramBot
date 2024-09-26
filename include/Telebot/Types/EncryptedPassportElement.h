@@ -22,7 +22,7 @@ namespace Telebot
         std::string hash;
     };
 
-    inline void from_json(const Json::Json& json, EncryptedPassportElement& object) noexcept
+    inline void from_json(const ExtendedCpp::Json& json, EncryptedPassportElement& object) noexcept
     {
         VALUE_FROM_JSON(type)
         VALUE_FROM_JSON(data)

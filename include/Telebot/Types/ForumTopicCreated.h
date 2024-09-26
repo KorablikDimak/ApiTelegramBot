@@ -1,7 +1,7 @@
 #ifndef Telebot_ForumTopicCreated_H
 #define Telebot_ForumTopicCreated_H
 
-#include <Json/Json.h>
+#include <ExtendedCpp/Json.h>
 
 namespace Telebot
 {
@@ -15,7 +15,7 @@ namespace Telebot
         std::string icon_custom_emoji_id;
     };
 
-    inline void from_json(const Json::Json& json, ForumTopicCreated& object) noexcept
+    inline void from_json(const ExtendedCpp::Json& json, ForumTopicCreated& object) noexcept
     {
         VALUE_FROM_JSON(name)
         VALUE_FROM_JSON(icon_color)

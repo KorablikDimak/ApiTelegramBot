@@ -1,7 +1,7 @@
 #include <fstream>
 #include <filesystem>
 
-#include <Common/Random.h>
+#include <ExtendedCpp/Random.h>
 
 #include <Telebot/TelebotApi.h>
 #include <Telebot/HttpContext.h>
@@ -15,7 +15,7 @@ Telebot::TelebotApi::TelebotApi(const std::string& token) noexcept
     _token = token;
 }
 
-std::optional<Json::Json> Telebot::TelebotApi::Get(const std::string& methodName) const noexcept
+std::optional<ExtendedCpp::Json> Telebot::TelebotApi::Get(const std::string& methodName) const noexcept
 {
     const auto httpContext = std::make_shared<HttpContext<EmptyBody, StringBody>>();
     httpContext->Request->version(HTTP_VERSION);
@@ -26,7 +26,7 @@ std::optional<Json::Json> Telebot::TelebotApi::Get(const std::string& methodName
     try
     {
         HttpsClient::SendHttpsAsync(httpContext);
-        const auto json = Json::Json::parse(httpContext->Response->get().body());
+        const auto json = ExtendedCpp::Json::parse(httpContext->Response->get().body());
         if (!json.contains("ok"))
             return std::nullopt;
         if (json.at("ok").get<bool>())
@@ -43,7 +43,7 @@ std::optional<Json::Json> Telebot::TelebotApi::Get(const std::string& methodName
     }
 }
 
-std::optional<Json::Json> Telebot::TelebotApi::Post(const std::string& methodName, const Json::Json& params) const noexcept
+std::optional<ExtendedCpp::Json> Telebot::TelebotApi::Post(const std::string& methodName, const ExtendedCpp::Json& params) const noexcept
 {
     auto httpContext = std::make_shared<HttpContext<StringBody, StringBody>>();
     httpContext->Request->version(HTTP_VERSION);
@@ -58,7 +58,7 @@ std::optional<Json::Json> Telebot::TelebotApi::Post(const std::string& methodNam
     try
     {
         HttpsClient::SendHttpsAsync(httpContext);
-        const auto json = Json::Json::parse(httpContext->Response->get().body());
+        const auto json = ExtendedCpp::Json::parse(httpContext->Response->get().body());
         if (!json.contains("ok"))
             return std::nullopt;
         if (json.at("ok").get<bool>())
@@ -80,7 +80,7 @@ std::vector<Telebot::Update::Ptr> Telebot::TelebotApi::GetUpdates(int offset,
                                                                   int timeout,
                                                                   const std::vector<std::string>& allowedUpdates) const noexcept
 {
-    Json::Json requestBody;
+    ExtendedCpp::Json requestBody;
     requestBody["offset"] = offset;
     requestBody["limit"] = limit;
     requestBody["timeout"] = timeout;
@@ -90,9 +90,9 @@ std::vector<Telebot::Update::Ptr> Telebot::TelebotApi::GetUpdates(int offset,
     const auto postResult = Post("getUpdates", requestBody);
     if (!postResult.has_value())
         return updates;
-    const Json::Json& responseBody = postResult.value();
+    const ExtendedCpp::Json& responseBody = postResult.value();
 
-    for (const Json::Json& element : responseBody)
+    for (const ExtendedCpp::Json& element : responseBody)
     {
         auto update = std::make_shared<Update>();
         *update = element.get<Update>();
@@ -127,7 +127,7 @@ Telebot::User::Ptr Telebot::TelebotApi::GetMe() const noexcept
     const auto getResult = Get("getMe");
     if (!getResult.has_value())
         return nullptr;
-    const Json::Json& responseBody = getResult.value();
+    const ExtendedCpp::Json& responseBody = getResult.value();
 
     auto user = std::make_shared<User>();
     *user = responseBody.get<User>();
@@ -158,7 +158,7 @@ Telebot::Message::Ptr Telebot::TelebotApi::SendMessage(std::int64_t chatId,
                                                        bool protectContent,
                                                        std::int32_t messageThreadId) const noexcept
 {
-    Json::Json requestBody;
+    ExtendedCpp::Json requestBody;
     requestBody["chat_id"] = chatId;
     requestBody["text"] = text;
     if (replyMarkup.get() != nullptr)
@@ -167,7 +167,7 @@ Telebot::Message::Ptr Telebot::TelebotApi::SendMessage(std::int64_t chatId,
     const auto postResult = Post("sendMessage", requestBody);
     if (!postResult.has_value())
         return nullptr;
-    const Json::Json& responseBody = postResult.value();
+    const ExtendedCpp::Json& responseBody = postResult.value();
 
     auto message = std::make_shared<Message>();
     *message = responseBody.get<Message>();
@@ -217,14 +217,14 @@ Telebot::Message::Ptr Telebot::TelebotApi::SendPhoto(std::int64_t chatId,
 {
     if (photo.index() == 0)
     {
-        Json::Json requestBody;
+        ExtendedCpp::Json requestBody;
         requestBody["chat_id"] = chatId;
         requestBody["photo"] = std::get<std::string>(photo);
 
         const auto postResult = Post("sendPhoto", requestBody);
         if (!postResult.has_value())
             return nullptr;
-        const Json::Json& responseBody = postResult.value();
+        const ExtendedCpp::Json& responseBody = postResult.value();
 
         auto message = std::make_shared<Message>();
         *message = responseBody.get<Message>();
@@ -337,7 +337,7 @@ Telebot::Message::Ptr Telebot::TelebotApi::SendVoice(std::int64_t chatId,
             fileContent << file.rdbuf();
 
             std::filesystem::path filePath(std::get<std::string>(voice));
-            const std::string guid = Common::RandomString(12);
+            const std::string guid = ExtendedCpp::Random::RandomString(12);
             std::string body = "--" + guid + "\r\n"
                                "Content-Disposition: form-data; name=\"chat_id\"\r\n"
                                "Content-Type: text/plain\r\n\r\n"
@@ -361,7 +361,7 @@ Telebot::Message::Ptr Telebot::TelebotApi::SendVoice(std::int64_t chatId,
 
             HttpsClient::SendHttpsAsync(httpContext);
 
-            auto responseBody = Json::Json::parse(httpContext->Response->get().body());
+            auto responseBody = ExtendedCpp::Json::parse(httpContext->Response->get().body());
             auto message = std::make_shared<Message>();
             *message = responseBody.get<Message>();
             return message;
@@ -505,13 +505,13 @@ Telebot::UserProfilePhotos::Ptr Telebot::TelebotApi::GetUserProfilePhotos(std::i
 
 Telebot::File::Ptr Telebot::TelebotApi::GetFile(const std::string& fileId) const noexcept
 {
-    Json::Json requestBody;
+    ExtendedCpp::Json requestBody;
     requestBody["file_id"] = fileId;
 
     const auto postResult = Post("getFile", requestBody);
     if (!postResult.has_value())
         return nullptr;
-    const Json::Json& responseBody = postResult.value();
+    const ExtendedCpp::Json& responseBody = postResult.value();
 
     auto file = std::make_shared<File>();
     *file = responseBody.get<File>();
@@ -807,7 +807,7 @@ bool Telebot::TelebotApi::AnswerCallbackQuery(const std::string& callbackQueryId
                                               const std::string& url,
                                               std::int32_t cacheTime) const noexcept
 {
-    Json::Json requestBody;
+    ExtendedCpp::Json requestBody;
     requestBody["callback_query_id"] = callbackQueryId;
     if (!text.empty())
         requestBody["text"] = text;
@@ -816,7 +816,7 @@ bool Telebot::TelebotApi::AnswerCallbackQuery(const std::string& callbackQueryId
     const auto postResult = Post("answerCallbackQuery", requestBody);
     if (!postResult.has_value())
         return false;
-    const Json::Json& responseBody = postResult.value();
+    const ExtendedCpp::Json& responseBody = postResult.value();
 
     return responseBody.get<bool>();
 }
@@ -825,7 +825,7 @@ bool Telebot::TelebotApi::SetMyCommands(const std::vector<BotCommand::Ptr>& comm
                                         const BotCommandScope::Ptr& scope,
                                         const std::string& languageCode) const noexcept
 {
-    Json::Json requestBody;
+    ExtendedCpp::Json requestBody;
     requestBody["commands"] = commands;
     if (scope.get() != nullptr)
         requestBody["scope"] = scope;
@@ -834,7 +834,7 @@ bool Telebot::TelebotApi::SetMyCommands(const std::vector<BotCommand::Ptr>& comm
     const auto postResult = Post("setMyCommands", requestBody);
     if (!postResult.has_value())
         return false;
-    const Json::Json& responseBody = postResult.value();
+    const ExtendedCpp::Json& responseBody = postResult.value();
 
     return responseBody.get<bool>();
 }
@@ -903,7 +903,7 @@ Telebot::Message::Ptr Telebot::TelebotApi::EditMessageText(const std::string& te
                                                            const GenericReply::Ptr& replyMarkup,
                                                            const std::vector<MessageEntity::Ptr>& entities) const noexcept
 {
-    Json::Json requestBody;
+    ExtendedCpp::Json requestBody;
     requestBody["text"] = text;
     requestBody["chat_id"] = chatId;
     requestBody["message_id"] = messageId;
@@ -912,7 +912,7 @@ Telebot::Message::Ptr Telebot::TelebotApi::EditMessageText(const std::string& te
     const auto postResult = Post("editMessageText", requestBody);
     if (!postResult.has_value())
         return nullptr;
-    const Json::Json& responseBody = postResult.value();
+    const ExtendedCpp::Json& responseBody = postResult.value();
 
     auto message = std::make_shared<Message>();
     *message = responseBody.get<Message>();

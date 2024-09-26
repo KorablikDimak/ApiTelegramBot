@@ -1,7 +1,7 @@
 #ifndef Telebot_WriteAccessAllowed_H
 #define Telebot_WriteAccessAllowed_H
 
-#include <Json/Json.h>
+#include <ExtendedCpp/Json.h>
 
 namespace Telebot
 {
@@ -11,7 +11,7 @@ namespace Telebot
         typedef std::shared_ptr<WriteAccessAllowed> Ptr;
     };
 
-    inline void from_json(const Json::Json& json, WriteAccessAllowed& object) noexcept {}
+    inline void from_json(const ExtendedCpp::Json& json, WriteAccessAllowed& object) noexcept {}
 }
 
 #endif

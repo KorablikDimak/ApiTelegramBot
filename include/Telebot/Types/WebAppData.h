@@ -1,7 +1,7 @@
 #ifndef Telebot_WebAppData_H
 #define Telebot_WebAppData_H
 
-#include <Json/Json.h>
+#include <ExtendedCpp/Json.h>
 
 namespace Telebot
 {
@@ -14,7 +14,7 @@ namespace Telebot
         std::string button_text;
     };
 
-    inline void from_json(const Json::Json& json, WebAppData& object) noexcept
+    inline void from_json(const ExtendedCpp::Json& json, WebAppData& object) noexcept
     {
         VALUE_FROM_JSON(data)
         VALUE_FROM_JSON(button_text)

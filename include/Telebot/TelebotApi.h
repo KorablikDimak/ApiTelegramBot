@@ -34,9 +34,9 @@ namespace Telebot
         std::string _token;
 
         [[nodiscard]]
-        std::optional<Json::Json> Get(const std::string& methodName) const noexcept;
+        std::optional<ExtendedCpp::Json> Get(const std::string& methodName) const noexcept;
         [[nodiscard]]
-        std::optional<Json::Json> Post(const std::string& methodName, const Json::Json& params) const noexcept;
+        std::optional<ExtendedCpp::Json> Post(const std::string& methodName, const ExtendedCpp::Json& params) const noexcept;
 
     public:
         explicit TelebotApi(const std::string& token) noexcept;

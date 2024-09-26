@@ -1,7 +1,7 @@
 #ifndef Telebot_MaskPosition_H
 #define Telebot_MaskPosition_H
 
-#include <Json/Json.h>
+#include <ExtendedCpp/Json.h>
 
 namespace Telebot
 {
@@ -16,7 +16,7 @@ namespace Telebot
         float scale;
     };
 
-    inline void from_json(const Json::Json& json, MaskPosition& object) noexcept
+    inline void from_json(const ExtendedCpp::Json& json, MaskPosition& object) noexcept
     {
         VALUE_FROM_JSON(point)
         VALUE_FROM_JSON(x_shift)

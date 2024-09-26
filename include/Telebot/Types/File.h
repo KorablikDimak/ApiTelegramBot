@@ -1,7 +1,7 @@
 #ifndef Telebot_File_H
 #define Telebot_File_H
 
-#include <Json/Json.h>
+#include <ExtendedCpp/Json.h>
 
 namespace Telebot
 {
@@ -16,7 +16,7 @@ namespace Telebot
         std::string file_path;
     };
 
-    inline void from_json(const Json::Json& json, File& object) noexcept
+    inline void from_json(const ExtendedCpp::Json& json, File& object) noexcept
     {
         VALUE_FROM_JSON(file_id)
         VALUE_FROM_JSON(file_unique_id)

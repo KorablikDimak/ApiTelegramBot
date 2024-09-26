@@ -25,7 +25,7 @@ namespace Telebot
         std::string customEmojiId;
     };
 
-    inline void from_json(const Json::Json& json, MessageEntity& object) noexcept
+    inline void from_json(const ExtendedCpp::Json& json, MessageEntity& object) noexcept
     {
         VALUE_FROM_JSON(type)
         VALUE_FROM_JSON(offset)

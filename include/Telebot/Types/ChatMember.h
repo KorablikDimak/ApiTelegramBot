@@ -17,7 +17,7 @@ namespace Telebot
         User::Ptr user;
     };
 
-    inline void from_json(const Json::Json& json, ChatMember& object) noexcept
+    inline void from_json(const ExtendedCpp::Json& json, ChatMember& object) noexcept
     {
         VALUE_FROM_JSON(status)
         OBJECT_FROM_JSON(user)

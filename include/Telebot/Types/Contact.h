@@ -1,7 +1,7 @@
 #ifndef Telebot_Contact_H
 #define Telebot_Contact_H
 
-#include <Json/Json.h>
+#include <ExtendedCpp/Json.h>
 
 namespace Telebot
 {
@@ -17,7 +17,7 @@ namespace Telebot
         std::string vcard;
     };
 
-    inline void from_json(const Json::Json& json, Contact& object) noexcept
+    inline void from_json(const ExtendedCpp::Json& json, Contact& object) noexcept
     {
         VALUE_FROM_JSON(phone_number)
         VALUE_FROM_JSON(first_name)

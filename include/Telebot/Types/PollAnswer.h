@@ -15,7 +15,7 @@ namespace Telebot
         std::vector<std::int32_t> option_ids;
     };
 
-    inline void from_json(const Json::Json& json, PollAnswer& object) noexcept
+    inline void from_json(const ExtendedCpp::Json& json, PollAnswer& object) noexcept
     {
         VALUE_FROM_JSON(poll_id)
         OBJECT_FROM_JSON(user)

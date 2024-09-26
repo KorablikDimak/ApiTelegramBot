@@ -18,16 +18,16 @@ namespace Telebot
         void SetButton(const InlineKeyboardButton::Ptr& button, unsigned char row, unsigned char column) noexcept;
         void RemoveButton(unsigned char row, unsigned char column) noexcept;
 
-        void ToJson(Json::Json& json, const GenericReply::Ptr& object) noexcept override;
+        void ToJson(ExtendedCpp::Json& json, const GenericReply::Ptr& object) noexcept override;
     };
 
-    inline void from_json(const Json::Json& json, InlineKeyboardMarkup& object) noexcept
+    inline void from_json(const ExtendedCpp::Json& json, InlineKeyboardMarkup& object) noexcept
     {
         if (json.contains("inline_keyboard"))
-            for (const Json::Json& element : json.at("inline_keyboard"))
+            for (const ExtendedCpp::Json& element : json.at("inline_keyboard"))
             {
                 std::vector<InlineKeyboardButton::Ptr> innerVector;
-                for (const Json::Json& innerElement : element)
+                for (const ExtendedCpp::Json& innerElement : element)
                 {
                     auto button = std::make_shared<InlineKeyboardButton>();
                     *button = innerElement.get<InlineKeyboardButton>();
@@ -37,7 +37,7 @@ namespace Telebot
             }
     }
 
-    inline void to_json(Json::Json& json, const InlineKeyboardMarkup::Ptr& object) noexcept
+    inline void to_json(ExtendedCpp::Json& json, const InlineKeyboardMarkup::Ptr& object) noexcept
     {
         json["inline_keyboard"] = object->inline_keyboard;
     }

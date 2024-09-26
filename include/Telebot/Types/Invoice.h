@@ -1,7 +1,7 @@
 #ifndef Telebot_Invoice_H
 #define Telebot_Invoice_H
 
-#include <Json/Json.h>
+#include <ExtendedCpp/Json.h>
 
 namespace Telebot
 {
@@ -17,7 +17,7 @@ namespace Telebot
         std::int32_t total_amount;
     };
 
-    inline void from_json(const Json::Json& json, Invoice& object) noexcept
+    inline void from_json(const ExtendedCpp::Json& json, Invoice& object) noexcept
     {
         VALUE_FROM_JSON(title)
         VALUE_FROM_JSON(description)

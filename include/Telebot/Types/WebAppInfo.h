@@ -1,7 +1,7 @@
 #ifndef Telebot_WebAppInfo_H
 #define Telebot_WebAppInfo_H
 
-#include <Json/Json.h>
+#include <ExtendedCpp/Json.h>
 
 namespace Telebot
 {
@@ -13,12 +13,12 @@ namespace Telebot
         std::string url;
     };
 
-    inline void from_json(const Json::Json& json, WebAppInfo& object) noexcept
+    inline void from_json(const ExtendedCpp::Json& json, WebAppInfo& object) noexcept
     {
         VALUE_FROM_JSON(url)
     }
 
-    inline void to_json(Json::Json& json, const WebAppInfo::Ptr& object) noexcept
+    inline void to_json(ExtendedCpp::Json& json, const WebAppInfo::Ptr& object) noexcept
     {
         VALUE_TO_JSON(url)
     }

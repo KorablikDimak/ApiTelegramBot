@@ -21,7 +21,7 @@ namespace Telebot
         PhotoSize::Ptr thumb;
     };
 
-    inline void from_json(const Json::Json& json, Audio& object) noexcept
+    inline void from_json(const ExtendedCpp::Json& json, Audio& object) noexcept
     {
         VALUE_FROM_JSON(file_id)
         VALUE_FROM_JSON(file_unique_id)

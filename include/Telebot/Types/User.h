@@ -1,7 +1,7 @@
 #ifndef Telebot_User_H
 #define Telebot_User_H
 
-#include <Json/Json.h>
+#include <ExtendedCpp/Json.h>
 
 namespace Telebot
 {
@@ -23,7 +23,7 @@ namespace Telebot
         bool supports_inline_queries;
     };
 
-    inline void from_json(const Json::Json& json, User& object) noexcept
+    inline void from_json(const ExtendedCpp::Json& json, User& object) noexcept
     {
         VALUE_FROM_JSON(id)
         VALUE_FROM_JSON(is_bot)

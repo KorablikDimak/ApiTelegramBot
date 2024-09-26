@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.5)
 
 project(Telebot
-        VERSION 1.1.2
+        VERSION 1.1.3
         DESCRIPTION "Library for connect to telegram bot api"
         LANGUAGES CXX)
 

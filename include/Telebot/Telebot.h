@@ -2,25 +2,26 @@
 #define Telebot_Telebot_H
 
 #include <future>
+#include <map>
 
-#include <Events/Event.h>
-#include <Common/CancellationTokenSource.h>
+#include <ExtendedCpp/Events.h>
+#include <ExtendedCpp/Cancellation.h>
 
 #include <Telebot/TelebotApi.h>
 
 namespace Telebot
 {
-    typedef std::shared_ptr<Events::Event<const Message::Ptr&>> MessageEvent;
+    typedef std::shared_ptr<ExtendedCpp::Events::Event<const Message::Ptr&>> MessageEvent;
     typedef std::function<void(const Message::Ptr&)> MessageHandler;
 
-    typedef std::shared_ptr<Events::Event<const CallbackQuery::Ptr&>> CallbackQueryEvent;
+    typedef std::shared_ptr<ExtendedCpp::Events::Event<const CallbackQuery::Ptr&>> CallbackQueryEvent;
     typedef std::function<void(const CallbackQuery::Ptr&)> CallbackHandler;
 
     class Telebot
     {
     private:
         std::unique_ptr<TelebotApi> _api;
-        std::unique_ptr<Common::CancellationTokenSource> _acceptorTokenSource;
+        std::unique_ptr<ExtendedCpp::Cancellation::CancellationTokenSource> _acceptorTokenSource;
         std::future<void> _acceptor;
 
         static const std::int32_t LIMIT;

@@ -22,7 +22,7 @@ namespace Telebot
         WebAppInfo::Ptr web_app;
     };
 
-    inline void to_json(Json::Json& json, const KeyboardButton::Ptr& object) noexcept
+    inline void to_json(ExtendedCpp::Json& json, const KeyboardButton::Ptr& object) noexcept
     {
         VALUE_TO_JSON(text)
         OBJECT_TO_JSON(request_user)

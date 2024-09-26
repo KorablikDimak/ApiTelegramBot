@@ -1,7 +1,7 @@
 #ifndef Telebot_Voice_H
 #define Telebot_Voice_H
 
-#include <Json/Json.h>
+#include <ExtendedCpp/Json.h>
 
 namespace Telebot
 {
@@ -17,7 +17,7 @@ namespace Telebot
         std::int64_t file_size;
     };
 
-    inline void from_json(const Json::Json& json, Voice& object) noexcept
+    inline void from_json(const ExtendedCpp::Json& json, Voice& object) noexcept
     {
         VALUE_FROM_JSON(file_id)
         VALUE_FROM_JSON(file_unique_id)

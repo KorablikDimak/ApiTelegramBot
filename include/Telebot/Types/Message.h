@@ -120,7 +120,7 @@ namespace Telebot
         InlineKeyboardMarkup::Ptr reply_markup;
     };
 
-    inline void from_json(const Json::Json& json, Message& object) noexcept
+    inline void from_json(const ExtendedCpp::Json& json, Message& object) noexcept
     {
         VALUE_FROM_JSON(message_id)
         VALUE_FROM_JSON(message_thread_id)

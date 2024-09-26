@@ -19,7 +19,7 @@ namespace Telebot
         std::string provider_payment_charge_id;
     };
 
-    inline void from_json(const Json::Json& json, SuccessfulPayment& object) noexcept
+    inline void from_json(const ExtendedCpp::Json& json, SuccessfulPayment& object) noexcept
     {
         VALUE_FROM_JSON(currency)
         VALUE_FROM_JSON(total_amount)

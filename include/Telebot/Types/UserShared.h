@@ -1,7 +1,7 @@
 #ifndef Telebot_UserShared_H
 #define Telebot_UserShared_H
 
-#include <Json/Json.h>
+#include <ExtendedCpp/Json.h>
 
 namespace Telebot
 {
@@ -14,7 +14,7 @@ namespace Telebot
         std::int64_t user_id;
     };
 
-    inline void from_json(const Json::Json& json, UserShared& object) noexcept
+    inline void from_json(const ExtendedCpp::Json& json, UserShared& object) noexcept
     {
         VALUE_FROM_JSON(request_id)
         VALUE_FROM_JSON(user_id)

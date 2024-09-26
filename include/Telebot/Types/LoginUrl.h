@@ -1,7 +1,7 @@
 #ifndef Telebot_LoginUrl_H
 #define Telebot_LoginUrl_H
 
-#include <Json/Json.h>
+#include <ExtendedCpp/Json.h>
 
 namespace Telebot
 {
@@ -16,7 +16,7 @@ namespace Telebot
         bool request_write_access;
     };
 
-    inline void from_json(const Json::Json& json, LoginUrl& object) noexcept
+    inline void from_json(const ExtendedCpp::Json& json, LoginUrl& object) noexcept
     {
         VALUE_FROM_JSON(url)
         VALUE_FROM_JSON(forward_text)
@@ -24,7 +24,7 @@ namespace Telebot
         VALUE_FROM_JSON(request_write_access)
     }
 
-    inline void to_json(Json::Json& json, const LoginUrl::Ptr& object) noexcept
+    inline void to_json(ExtendedCpp::Json& json, const LoginUrl::Ptr& object) noexcept
     {
         VALUE_TO_JSON(url)
         if (!object->forward_text.empty()) VALUE_TO_JSON(forward_text)

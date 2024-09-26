@@ -1,5 +1,3 @@
-#include <Events/FunctionHandler.h>
-
 #include <Telebot/Telebot.h>
 
 const std::int32_t Telebot::Telebot::LIMIT = 100;
@@ -8,9 +6,9 @@ Telebot::Telebot::Telebot(const std::string &token) noexcept
 {
     _api = std::make_unique<TelebotApi>(token);
     _timeout = 10;
-    _onAnyMessage = std::make_shared<Events::Event<const Message::Ptr&>>();
-    _onVoice = std::make_shared<Events::Event<const Message::Ptr&>>();
-    _onAnyCallbackQuery = std::make_shared<Events::Event<const CallbackQuery::Ptr&>>();
+    _onAnyMessage = std::make_shared<ExtendedCpp::Events::Event<const Message::Ptr&>>();
+    _onVoice = std::make_shared<ExtendedCpp::Events::Event<const Message::Ptr&>>();
+    _onAnyCallbackQuery = std::make_shared<ExtendedCpp::Events::Event<const CallbackQuery::Ptr&>>();
 }
 
 Telebot::Telebot::~Telebot()
@@ -73,7 +71,7 @@ void Telebot::Telebot::Start() noexcept
 {
     if (_acceptorTokenSource == nullptr || _acceptorTokenSource->Token()->IsCancellationRequested())
     {
-        _acceptorTokenSource = std::make_unique<Common::CancellationTokenSource>();
+        _acceptorTokenSource = std::make_unique<ExtendedCpp::Cancellation::CancellationTokenSource>();
         const User::Ptr user = _api->GetMe();
         if (!user || !user->is_bot)
             return;
@@ -85,7 +83,7 @@ void Telebot::Telebot::StartAsync() noexcept
 {
     if (_acceptorTokenSource == nullptr || _acceptorTokenSource->Token()->IsCancellationRequested())
     {
-        _acceptorTokenSource = std::make_unique<Common::CancellationTokenSource>();
+        _acceptorTokenSource = std::make_unique<ExtendedCpp::Cancellation::CancellationTokenSource>();
         const User::Ptr user = _api->GetMe();
         if (!user || !user->is_bot)
             return;
@@ -194,7 +192,7 @@ void Telebot::Telebot::OnAnyMessage(MessageHandler&& handler) const noexcept
 Telebot::MessageEvent& Telebot::Telebot::OnMessage(const std::string& message) noexcept
 {
     if (!_onMessage.contains(message))
-        _onMessage.insert(std::make_pair(message, std::make_shared<Events::Event<const Message::Ptr&>>()));
+        _onMessage.insert(std::make_pair(message, std::make_shared<ExtendedCpp::Events::Event<const Message::Ptr&>>()));
     return _onMessage[message];
 }
 
@@ -206,7 +204,7 @@ void Telebot::Telebot::OnMessage(const std::string& message, MessageHandler&& ha
 Telebot::MessageEvent& Telebot::Telebot::OnCommand(const std::string& command) noexcept
 {
     if (!_onCommand.contains(command))
-        _onCommand.insert(std::make_pair(command, std::make_shared<Events::Event<const Message::Ptr&>>()));
+        _onCommand.insert(std::make_pair(command, std::make_shared<ExtendedCpp::Events::Event<const Message::Ptr&>>()));
     return _onCommand[command];
 }
 
@@ -238,7 +236,7 @@ void Telebot::Telebot::OnAnyCallbackQuery(CallbackHandler&& handler) const noexc
 Telebot::CallbackQueryEvent& Telebot::Telebot::OnCallbackQuery(const std::string& callback_data) noexcept
 {
     if (!_onCallbackQuery.contains(callback_data))
-        _onCallbackQuery.insert(std::make_pair(callback_data, std::make_shared<Events::Event<const CallbackQuery::Ptr&>>()));
+        _onCallbackQuery.insert(std::make_pair(callback_data, std::make_shared<ExtendedCpp::Events::Event<const CallbackQuery::Ptr&>>()));
     return _onCallbackQuery[callback_data];
 }
 

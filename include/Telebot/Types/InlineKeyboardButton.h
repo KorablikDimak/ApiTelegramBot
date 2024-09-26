@@ -31,7 +31,7 @@ namespace Telebot
         bool pay{};
     };
 
-    inline void from_json(const Json::Json& json, InlineKeyboardButton& object) noexcept
+    inline void from_json(const ExtendedCpp::Json& json, InlineKeyboardButton& object) noexcept
     {
         VALUE_FROM_JSON(text)
         VALUE_FROM_JSON(url)
@@ -44,7 +44,7 @@ namespace Telebot
         VALUE_FROM_JSON(pay)
     }
 
-    inline void to_json(Json::Json& json, const InlineKeyboardButton::Ptr& object) noexcept
+    inline void to_json(ExtendedCpp::Json& json, const InlineKeyboardButton::Ptr& object) noexcept
     {
         VALUE_TO_JSON(text)
         if (!object->url.empty()) VALUE_TO_JSON(url)

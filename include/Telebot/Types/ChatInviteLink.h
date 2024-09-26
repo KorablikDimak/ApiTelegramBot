@@ -21,7 +21,7 @@ class ChatInviteLink
         std::uint32_t pending_join_request_count;
     };
 
-    inline void from_json(const Json::Json& json, ChatInviteLink& object) noexcept
+    inline void from_json(const ExtendedCpp::Json& json, ChatInviteLink& object) noexcept
     {
         VALUE_FROM_JSON(invite_link)
         OBJECT_FROM_JSON(creator)

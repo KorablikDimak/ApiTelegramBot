@@ -21,7 +21,7 @@ namespace Telebot
         std::int64_t file_size;
     };
 
-    inline void from_json(const Json::Json& json, Video& object) noexcept
+    inline void from_json(const ExtendedCpp::Json& json, Video& object) noexcept
     {
         VALUE_FROM_JSON(file_id)
         VALUE_FROM_JSON(file_unique_id)

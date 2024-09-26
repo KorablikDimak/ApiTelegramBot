@@ -1,7 +1,7 @@
 #ifndef Telebot_ChatPermissions_H
 #define Telebot_ChatPermissions_H
 
-#include <Json/Json.h>
+#include <ExtendedCpp/Json.h>
 
 namespace Telebot
 {
@@ -26,7 +26,7 @@ namespace Telebot
         bool can_manage_topics;
     };
 
-    inline void from_json(const Json::Json& json, ChatPermissions& object) noexcept
+    inline void from_json(const ExtendedCpp::Json& json, ChatPermissions& object) noexcept
     {
         VALUE_FROM_JSON(can_send_messages)
         VALUE_FROM_JSON(can_send_audios)

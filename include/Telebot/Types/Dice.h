@@ -1,7 +1,7 @@
 #ifndef Telebot_Dice_H
 #define Telebot_Dice_H
 
-#include <Json/Json.h>
+#include <ExtendedCpp/Json.h>
 
 namespace Telebot
 {
@@ -14,7 +14,7 @@ namespace Telebot
         std::int32_t value;
     };
 
-    inline void from_json(const Json::Json& json, Dice& object) noexcept
+    inline void from_json(const ExtendedCpp::Json& json, Dice& object) noexcept
     {
         VALUE_FROM_JSON(emoji)
         VALUE_FROM_JSON(value)

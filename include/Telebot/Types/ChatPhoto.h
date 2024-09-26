@@ -1,7 +1,7 @@
 #ifndef Telebot_ChatPhoto_H
 #define Telebot_ChatPhoto_H
 
-#include <Json/Json.h>
+#include <ExtendedCpp/Json.h>
 
 namespace Telebot
 {
@@ -16,7 +16,7 @@ namespace Telebot
         std::string big_file_unique_id;
     };
 
-    inline void from_json(const Json::Json& json, ChatPhoto& object) noexcept
+    inline void from_json(const ExtendedCpp::Json& json, ChatPhoto& object) noexcept
     {
         VALUE_FROM_JSON(small_file_id)
         VALUE_FROM_JSON(small_file_unique_id)

@@ -15,7 +15,7 @@ namespace Telebot
         std::int32_t distance;
     };
 
-    inline void from_json(const Json::Json& json, ProximityAlertTriggered& object) noexcept
+    inline void from_json(const ExtendedCpp::Json& json, ProximityAlertTriggered& object) noexcept
     {
         OBJECT_FROM_JSON(traveler)
         OBJECT_FROM_JSON(watcher)
