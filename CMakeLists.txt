@@ -64,10 +64,14 @@ target_link_libraries(Telebot PRIVATE
 
 if(MINGW)
     target_link_libraries(Telebot PRIVATE ws2_32)
-endif()
-
-if(MSVC AND WIN32)
-    target_compile_definitions(Telebot PRIVATE _WIN32_WINNT=0x0601)
+    if(CMAKE_BUILD_TYPE MATCHES "Debug")
+        target_compile_options(Telebot PRIVATE -O1 -Wa,-mbig-obj)
+    endif()
+elseif(MSVC)
+    target_compile_options(Telebot PRIVATE /bigobj)
+    if(WIN32)
+        target_compile_definitions(Telebot PRIVATE _WIN32_WINNT=0x0601)
+    endif()
 endif()
 
 if(Telebot_INSTALL AND NOT CMAKE_SKIP_INSTALL_RULES)
