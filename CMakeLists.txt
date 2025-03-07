@@ -26,6 +26,12 @@ set_if_undefined(Telebot_INSTALL_CMAKEDIR
         "${CMAKE_INSTALL_LIBDIR}/telebot" CACHE STRING
         "Install path for ApiTelegramBot package-related CMake files")
 
+if(BUILD_SHARED_LIBS)
+    set(LIBRARY_TYPE SHARED)
+else()
+    set(LIBRARY_TYPE STATIC)
+endif()
+
 set(Telebot_INCLUDES
         include/Telebot/Telebot.h
         include/Telebot/TelebotApi.h
@@ -45,7 +51,7 @@ set(Telebot_SOURCE
         src/Telebot/Types/PassportElementError.cpp
         src/Telebot/Types/GenericReply.cpp)
 
-add_library(Telebot ${Telebot_INCLUDES} ${Telebot_SOURCE})
+add_library(Telebot ${LIBRARY_TYPE} ${Telebot_INCLUDES} ${Telebot_SOURCE})
 add_library(Telebot::Telebot ALIAS Telebot)
 
 find_package(OpenSSL REQUIRED)
