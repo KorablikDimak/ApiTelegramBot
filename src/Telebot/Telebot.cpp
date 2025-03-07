@@ -23,7 +23,7 @@ void Telebot::Telebot::Accept() noexcept
     allowedUpdates.emplace_back("message");
     allowedUpdates.emplace_back("callback_query");
 
-    while (!_acceptorTokenSource->Token()->IsCancellationRequested())
+    while (!_acceptorTokenSource->Token().IsCancellationRequested())
     {
         const std::vector<Update::Ptr> updates = _api->GetUpdates(offset, LIMIT, _timeout, allowedUpdates);
         if (updates.empty()) continue;
@@ -69,7 +69,7 @@ void Telebot::Telebot::Accept() noexcept
 
 void Telebot::Telebot::Start() noexcept
 {
-    if (_acceptorTokenSource == nullptr || _acceptorTokenSource->Token()->IsCancellationRequested())
+    if (_acceptorTokenSource == nullptr || _acceptorTokenSource->Token().IsCancellationRequested())
     {
         _acceptorTokenSource = std::make_unique<ExtendedCpp::Cancellation::CancellationTokenSource>();
         const User::Ptr user = _api->GetMe();
@@ -81,7 +81,7 @@ void Telebot::Telebot::Start() noexcept
 
 void Telebot::Telebot::StartAsync() noexcept
 {
-    if (_acceptorTokenSource == nullptr || _acceptorTokenSource->Token()->IsCancellationRequested())
+    if (_acceptorTokenSource == nullptr || _acceptorTokenSource->Token().IsCancellationRequested())
     {
         _acceptorTokenSource = std::make_unique<ExtendedCpp::Cancellation::CancellationTokenSource>();
         const User::Ptr user = _api->GetMe();
@@ -93,7 +93,7 @@ void Telebot::Telebot::StartAsync() noexcept
 
 void Telebot::Telebot::Stop() const noexcept
 {
-    if (_acceptorTokenSource == nullptr || _acceptorTokenSource->Token()->IsCancellationRequested()) return;
+    if (_acceptorTokenSource == nullptr || _acceptorTokenSource->Token().IsCancellationRequested()) return;
     _acceptorTokenSource->Cancel();
     _acceptor.wait();
 }
